@@ -1,36 +1,16 @@
 # =====================================================
 # Cloudflare Pages — HTTP Headers
+# Static landing page — minimal headers, OG-preview friendly
 # https://developers.cloudflare.com/pages/configuration/headers/
 # =====================================================
 
-# ---------- Global security headers ----------
+# ---------- Basics: HTTPS + content sniffing + referrer ----------
 /*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  X-XSS-Protection: 0
-  Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https:; media-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
 
-# ---------- Public assets — must be embeddable cross-origin ----------
-# (OG previews on Facebook / Twitter / LINE / metatags.io fetch images cross-origin)
-/assets/*
-  Access-Control-Allow-Origin: *
-  Cross-Origin-Resource-Policy: cross-origin
-  Timing-Allow-Origin: *
-
-/assets/img/og-image.png
-  Access-Control-Allow-Origin: *
-  Cross-Origin-Resource-Policy: cross-origin
-  Cache-Control: public, max-age=86400
-
-/favicon.ico
-  Access-Control-Allow-Origin: *
-  Cross-Origin-Resource-Policy: cross-origin
-
-# ---------- HTML — no cache ----------
+# ---------- HTML — always fresh ----------
 /
   Cache-Control: public, max-age=0, must-revalidate
 
@@ -40,40 +20,25 @@
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
 
-# ---------- Service worker — no cache ----------
+# ---------- Service worker — never cache ----------
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
   Service-Worker-Allowed: /
 
-# ---------- Manifest — short cache ----------
+# ---------- Manifest / sitemap / robots ----------
 /manifest.webmanifest
-  Cache-Control: public, max-age=3600
   Content-Type: application/manifest+json; charset=utf-8
-
-# ---------- Sitemap / robots ----------
-/sitemap.xml
   Cache-Control: public, max-age=3600
+
+/sitemap.xml
   Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
 
 /robots.txt
-  Cache-Control: public, max-age=3600
   Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
 
-# ---------- Static assets — long cache ----------
-/assets/css/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/assets/js/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/assets/img/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/assets/icons/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/assets/patterns/*
-  Cache-Control: public, max-age=31536000, immutable
-
+# ---------- Static assets — long cache + cross-origin OK ----------
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
