@@ -4,70 +4,65 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Public landing page for **Tomato Agency** — a Live VJ agency in Thailand. Static HTML/CSS/JS (no build step), PWA-enabled, designed to deploy to Cloudflare Pages from this repo's `main` branch.
+Landing page for **Tomato Agency** — ค่าย Live VJ ของไทย. Plain HTML/CSS/JS, no build, no framework. Lives on Cloudflare Pages, auto-deploys when `main` gets pushed.
 
-Production domain: **`tomato.in.th`** (search-and-replace in `index.html`, `sitemap.xml`, `robots.txt`, `_redirects`, JSON-LD if it changes).
+Domain: `tomato.in.th`. If it ever changes, the hostname is hardcoded in `index.html`, `sitemap.xml`, `robots.txt`, `_redirects`, and the JSON-LD block — grep for it.
 
-The sibling `mcp-chrome/` folder on disk is a separate unrelated project and is gitignored — do not commit it.
+There's a `mcp-chrome/` folder next to this one on disk that's a totally different project. It's gitignored, leave it alone.
 
-## Commands
+## Running it
 
 ```bash
-# Local preview — pick one
-python -m http.server 8088               # simplest
-npx wrangler pages dev . --port 8788     # closest to Cloudflare Pages runtime
-npx serve .
-
-# Deploy
-git push origin main                                                    # auto-deploys via CF Pages GitHub integration
-npx wrangler pages deploy . --project-name=tomato-agency                # manual deploy alternative
+python -m http.server 8088               # easiest
+npx wrangler pages dev . --port 8788     # matches CF Pages behavior closer
 ```
 
-There are no tests and no lint config. Validate by visiting the local URL and looking at the page — there is no headless verification step.
+Deploy = `git push`. CF Pages picks it up. Or `npx wrangler pages deploy . --project-name=tomato-agency` if you want to push without commits.
 
-## Architecture (the bits that span files)
+No tests, no linter. You verify by opening the page.
 
-**One-page site**, everything lives in `index.html`. Sections render in this order and the nav + footer links target their `id`s — when you rename a section, update both nav lists and the `_redirects` vanity URLs:
+## How it's put together
 
-```
-splash → topbar → header → hero → about → manifesto → services
-       → process → talent (eligibility cards) → voices → faq → cta → footer
-```
+It's a single page. Everything is in `index.html`. Sections show up in this order:
 
-The hero's `#audition` anchor and the LINE button both link to `https://lin.ee/WSxsQuG` (the live LINE OA `@tomatoagency`). The agency does not have its own audition form on this site — the actual application happens inside the LIFF flow in the separate `botnick/idol-audition` repo.
+`splash → topbar → header → hero → about → manifesto → services → process → talent → voices → faq → cta → footer`
 
-**Brand tokens** live as CSS custom properties at the top of `assets/css/style.css` (`--red`, `--pink`, `--blue`, `--cream`, font families). Anything brand-colored should reference these, not hardcoded hex.
+The nav (and footer nav, and `_redirects` vanity URLs) point to those section IDs. Rename a section, update those too.
 
-**Bilingual display titles** use a two-span pattern: `<span class="display-serif">italic english</span><span class="display-sans">lowercase english</span>`. The serif half uses DM Serif Display italic; the sans half uses Italiana. Thai text never goes inside `.display-serif` — italic serif fonts mangle Thai glyphs.
+Brand colors and fonts are CSS variables at the top of `style.css` — `--red`, `--pink`, `--blue`, `--cream`, `--font-serif`, `--font-display`. Use those, not raw hex.
 
-**Service worker** (`sw.js`) uses stale-while-revalidate for assets and network-first for HTML, with an offline fallback to `/`. Bump `VERSION` when shipping breaking asset changes so old clients re-fetch.
+Section titles are bilingual: `<span class="display-serif">italic english</span>` + `<span class="display-sans">lowercase english</span>`. **Don't put Thai inside `.display-serif`** — italic serif fonts (DM Serif Display, Italiana) butcher Thai glyphs. Thai goes in `.section-lead` or body text where it uses IBM Plex Sans Thai.
 
-**PWA manifest** declares three home-screen shortcuts (Apply / Services / Contact). The maskable icons are the same files as the regular icons — they were designed with safe-zone padding already baked in.
+Service worker is stale-while-revalidate for assets, network-first for HTML. Bump `VERSION` in `sw.js` when you change cached files or old visitors will see stale stuff.
 
-## Assets — which logo goes where
+PWA manifest declares three shortcuts. The maskable icons reuse the regular icons — they already have enough padding.
 
-The repo carries **two** brand image files. Mixing them up has burned past sessions, so:
+## Logo files — don't mix these up
 
-- `assets/img/wordmark.png` — the horizontal `tomato agency` italic wordmark. Used for `.brand__logo` in **header** and **footer** only.
-- `assets/img/logo.png` — the round tomato-fruit mark with `to/ma/to` stacked inside. Used for the **splash**, the **hero orbit center**, and as the source for every file under `assets/icons/` (favicons, apple-touch, PWA 192/512).
-- `assets/img/og-image.png` — generated 1200×630 social card combining the fruit mark + wordmark + thin divider with a red dot. Regenerate it with PowerShell + `System.Drawing` if the layout needs to change; the older script lives in git history.
+There are two logos. They look different and they're for different things:
 
-If a future task says "use the logo" without specifying, ask which one. The fruit mark and the wordmark are not interchangeable.
+- **`assets/img/wordmark.png`** — the wide italic `tomato agency` text. Goes in the header and footer (`.brand__logo`). That's it.
+- **`assets/img/logo.png`** — the round red tomato fruit with `to/ma/to` stacked inside. Used in the splash, the hero orbit, and every icon under `assets/icons/` (favicons, apple-touch, PWA 192/512).
+- **`assets/img/og-image.png`** — 1200×630 social card with both logos and a thin divider. Generated with PowerShell `System.Drawing` — the script is in git history if you need to regenerate.
 
-## Brand voice — content rules the user has insisted on
+If a task says "use the logo" without saying which, ask. I burned a whole session on this once.
 
-These are baked into the live copy and should be preserved when editing:
+## Content rules — read before editing copy
 
-- The agency does **Live VJ only**. Do not introduce K-pop idol, "ศิลปิน", "ไอดอล", "Influencer", "content creator" framing — they were all removed deliberately.
-- No money-as-bait claims. The "ค่าโปรโมท 1,000 บาท/Post" line and any specific income/follower numbers were explicitly cut. No fabricated stats.
-- No "ทีมโค้ช" wording. Use **"พี่ ๆ ทีมงาน"** for the team. Tone is warm, slightly casual ("น้อง ๆ", soft ending particles like "นะ" / "จ้า") — not corporate.
-- Brand name in prose is **"Tomato Agency"** (capital T). The lowercase italic `tomato agency` only appears as the wordmark in the logo file and in display elements that use the bilingual pattern.
-- LINE handle `@tomatoagency` (URL `https://lin.ee/WSxsQuG`), Instagram `@tomatoagency.th`. These two have different handles — do not search-and-replace one into the other. The domain is `tomato.in.th`; the Instagram handle is `tomatoagency.th` (different thing).
+The user pushed back on every one of these. Don't undo them:
 
-## Cloudflare Pages deployment shape
+- **It's a Live VJ agency. Only that.** No "ศิลปิน", no "ไอดอล", no "Influencer", no "content creator". Those words are gone for a reason.
+- **No money in the pitch.** No "1,000 บาท/Post", no follower counts, no income claims. Don't invent stats.
+- **"พี่ ๆ ทีมงาน"** for the team, never "ทีมโค้ช". The tone is friendly and a bit cute — `น้อง ๆ`, soft particles like `นะ` / `จ้า` are fine.
+- **"Tomato Agency"** with a capital T when written out. Lowercase `tomato agency` only inside the wordmark image and the bilingual display titles.
+- LINE handle is `@tomatoagency` (URL `https://lin.ee/WSxsQuG`). Instagram is `@tomatoagency.th`. The domain is `tomato.in.th`. Three different things, easy to mix up. The IG handle and the domain are **not** the same string — don't blanket replace.
 
-`_headers` is intentionally minimal — HSTS + nosniff + Referrer-Policy + cache rules. A previous pass had COOP/CORP/CSP/Permissions-Policy and the COR-P `same-origin` was blocking Facebook/Twitter/LINE/metatags.io from fetching the OG image. Don't reintroduce those without a reason. The `/assets/*` rule explicitly sends `Access-Control-Allow-Origin: *` so social previews work.
+## CF Pages stuff
 
-`_redirects` provides vanity URLs (`/audition`, `/ig`, `/line`) and the `www.` → apex redirect.
+`_headers` is short on purpose. HSTS, nosniff, Referrer-Policy, cache rules. That's it.
 
-After pushing changes, social caches will hold the old OG image — use Facebook's [Sharing Debugger](https://developers.facebook.com/tools/debug/) and Twitter's [Card Validator](https://cards-dev.twitter.com/validator) to force a re-scrape.
+There used to be COOP/CORP/CSP/Permissions-Policy in there. The CORP `same-origin` blocked Facebook/Twitter/LINE/metatags.io from grabbing the OG image. Don't add them back without a reason. `/assets/*` has `Access-Control-Allow-Origin: *` so social scrapers work.
+
+`_redirects` has vanity URLs (`/audition`, `/line`, `/ig`) and `www → apex`.
+
+After deploying, social platforms cache the old preview. To force refresh: Facebook Sharing Debugger and Twitter Card Validator both have a re-scrape button.
