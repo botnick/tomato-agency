@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /sw.js
+
+# AI / scraping bots — opt-in only
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Sitemap
+Sitemap: https://tomato.in.th/sitemap.xml
+Host: https://tomato.in.th

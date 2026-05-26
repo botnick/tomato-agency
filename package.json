@@ -1,0 +1,21 @@
+{
+  "name": "tomato-agency",
+  "version": "1.0.0",
+  "private": true,
+  "description": "tomato agency — Idol Audition & Talent Management landing page (PWA, full SEO).",
+  "homepage": "https://tomato.in.th",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "npx wrangler pages dev . --port 8788",
+    "deploy": "npx wrangler pages deploy . --project-name=tomato-agency",
+    "deploy:preview": "npx wrangler pages deploy . --project-name=tomato-agency --branch=preview",
+    "validate:html": "npx html-validate index.html",
+    "validate:lighthouse": "npx lighthouse http://localhost:8788 --view --preset=desktop"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "wrangler": "^3"
+  }
+}

@@ -1,0 +1,23 @@
+# =====================================================
+# Cloudflare Pages — Redirects & rewrites
+# https://developers.cloudflare.com/pages/configuration/redirects/
+# =====================================================
+
+# Common vanity URLs that map into the landing page
+/audition          /#audition          301
+/apply             /#audition          301
+/contact           /#contact           301
+/services          /#services          301
+/about             /#about             301
+/faq               /#faq               301
+/talent            /#talent            301
+/ig                https://www.instagram.com/tomatoagency.th/  302
+/instagram         https://www.instagram.com/tomatoagency.th/  302
+/line              https://lin.ee/WSxsQuG                       302
+/lineoa            https://lin.ee/WSxsQuG                       302
+
+# www -> apex (assumes apex is the canonical)
+https://www.tomato.in.th/*    https://tomato.in.th/:splat  301!
+
+# 404 fallback to root for unknown paths (SPA-like behaviour kept simple)
+/* /index.html 200
