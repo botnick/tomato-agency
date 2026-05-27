@@ -7,7 +7,7 @@
      - offline fallback to root
    ===================================================== */
 
-const VERSION    = 'tomato-v1.1.0';
+const VERSION    = 'tomato-v1.2.12';
 const CORE_CACHE = `${VERSION}-core`;
 const RUN_CACHE  = `${VERSION}-run`;
 
@@ -57,8 +57,12 @@ async function staleWhileRevalidate(request) {
       cache.put(request, response.clone());
     }
     return response;
-  }).catch(() => null);
-  return cached || fetchPromise || new Response('', { status: 504 });
+  }).catch(() => new Response('', { status: 504, statusText: 'offline' }));
+  // Why explicit await: `cached || fetchPromise` evaluates the Promise as
+  // truthy and returns it before resolution — if the promise later resolves
+  // to a non-Response value, respondWith throws "Failed to convert".
+  if (cached) return cached;
+  return fetchPromise;
 }
 
 async function networkFirst(request) {

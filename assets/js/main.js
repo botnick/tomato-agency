@@ -17,8 +17,8 @@
     splash.classList.add('is-hidden');
     setTimeout(() => { try { splash.remove(); } catch {} }, 1100);
   };
-  // Show splash for ~1.4s minimum so the animation can play, then hide.
-  const minSplash = 1400;
+  // Min display so entry animations (corePop 1.15s, progress 1.3s) can finish
+  const minSplash = 1500;
   const startedAt = performance.now();
   const scheduleHide = () => {
     const elapsed = performance.now() - startedAt;
@@ -29,8 +29,10 @@
   } else {
     window.addEventListener('load', scheduleHide, { once: true });
   }
-  // Safety: always hide after 3s no matter what
-  setTimeout(hideSplash, 3000);
+  setTimeout(hideSplash, 3500);
+  if (splash) {
+    splash.addEventListener('pointerdown', hideSplash, { once: true, passive: true });
+  }
 
   /* ---------------- Year ---------------- */
   const y = $('#year');
@@ -75,6 +77,74 @@
         document.body.style.overflow = '';
       }
     });
+  }
+
+  /* ---------------- Voices horizontal scroll (mobile) ---------------- */
+  const voicesGrid = $('#voices .voices__grid');
+  if (voicesGrid && voicesGrid.children.length > 1) {
+    const wrap = document.createElement('div');
+    wrap.className = 'voices-scroll-wrap';
+    voicesGrid.parentNode.insertBefore(wrap, voicesGrid);
+    wrap.appendChild(voicesGrid);
+
+    const arrowSVG = dir =>
+      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="${dir === 'prev' ? '15 18 9 12 15 6' : '9 18 15 12 9 6'}"/></svg>`;
+
+    const makeArrow = (dir, label) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = `voices-arrow voices-arrow--${dir}`;
+      b.setAttribute('aria-label', label);
+      b.innerHTML = arrowSVG(dir);
+      return b;
+    };
+    const prevBtn = makeArrow('prev', 'รีวิวก่อนหน้า');
+    const nextBtn = makeArrow('next', 'รีวิวถัดไป');
+    wrap.appendChild(prevBtn);
+    wrap.appendChild(nextBtn);
+
+    const dots = document.createElement('div');
+    dots.className = 'voices-dots';
+    dots.setAttribute('aria-hidden', 'true');
+    Array.from(voicesGrid.children).forEach((_, i) => {
+      const d = document.createElement('span');
+      d.className = 'voices-dot' + (i === 0 ? ' is-active' : '');
+      dots.appendChild(d);
+    });
+    wrap.parentNode.insertBefore(dots, wrap.nextSibling);
+
+    const stepWidth = () => {
+      const first = voicesGrid.children[0];
+      return first ? first.getBoundingClientRect().width + 14 : 280;
+    };
+    const currentIdx = () => Math.round(voicesGrid.scrollLeft / stepWidth());
+    const goTo = idx => {
+      const clamped = Math.max(0, Math.min(idx, voicesGrid.children.length - 1));
+      const target = clamped * stepWidth();
+      voicesGrid.scrollTo({
+        left: target,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+      });
+    };
+    prevBtn.addEventListener('click', () => goTo(currentIdx() - 1));
+    nextBtn.addEventListener('click', () => goTo(currentIdx() + 1));
+
+    const updateDots = () => {
+      const sl = voicesGrid.scrollLeft;
+      const max = voicesGrid.scrollWidth - voicesGrid.clientWidth;
+      prevBtn.disabled = sl < 4;
+      nextBtn.disabled = sl > max - 4;
+      const idx = Math.min(
+        Math.round(sl / stepWidth()),
+        voicesGrid.children.length - 1
+      );
+      Array.from(dots.children).forEach((d, i) =>
+        d.classList.toggle('is-active', i === idx)
+      );
+    };
+    voicesGrid.addEventListener('scroll', updateDots, { passive: true });
+    window.addEventListener('resize', updateDots, { passive: true });
+    updateDots();
   }
 
   /* ---------------- Reveal on scroll ---------------- */
