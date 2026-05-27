@@ -925,8 +925,12 @@ a, button, summary, [role="button"],
 }
 .orbit {
   position: relative;
+  /* Explicit width + height instead of aspect-ratio — Safari sometimes
+     fails to apply aspect-ratio when the element is a flex item, which
+     made the orbit render as a tall oval on iOS only. */
   width: clamp(280px, 36vw, 420px);
-  aspect-ratio: 1;
+  height: clamp(280px, 36vw, 420px);
+  flex-shrink: 0;
 }
 .orbit__ring {
   position: absolute;
@@ -943,7 +947,7 @@ a, button, summary, [role="button"],
   position: absolute;
   top: 50%; left: 50%;
   width: 60%;
-  aspect-ratio: 1;
+  height: 60%;
   transform: translate(-50%, -50%);
   background: var(--white);
   border-radius: 50%;
