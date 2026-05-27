@@ -85,10 +85,19 @@ html {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  /* Kill interaction-triggered transitions (so taps feel instant)
+     and the heaviest decorative loops. Keep brand-identity loops
+     (marquee, orbit, splash entry) running — some iOS in-app
+     browsers report reduce-motion even when the OS setting is off,
+     which previously froze the entire page. */
   *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
+  }
+  .splash__sparkle,
+  .splash__ornament,
+  .hero__blob,
+  body::before {
+    animation: none !important;
   }
 }
 
@@ -1034,7 +1043,11 @@ a, button, summary, [role="button"],
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-25%, 0, 0); }   /* 4 groups: shift exactly 1 group width */
 }
-.hero__marquee:hover .marquee__track { animation-play-state: paused; }
+/* Pause on hover — but only for mouse devices.
+   iOS "sticky :hover" after tap permanently freezes the marquee otherwise. */
+@media (hover: hover) {
+  .hero__marquee:hover .marquee__track { animation-play-state: paused; }
+}
 
 /* ----------------------------------------------------
    About
