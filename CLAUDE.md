@@ -51,7 +51,7 @@ If a task says "use the logo" without saying which, ask. I burned a whole sessio
 
 The user pushed back on every one of these. Don't undo them:
 
-- **It's a Live VJ agency. Only that.** No "ศิลปิน", no "ไอดอล", no "Influencer", no "content creator". Those words are gone for a reason.
+- **Live VJ is the core service.** Don't position the agency as anything else. No "ศิลปิน" or "ไอดอล" — those framings stay out. "Influencer" and "content creator" are allowed only as *optional growth paths* the team can support if a streamer asks, never as the agency's own offering.
 - **No money in the pitch.** No "1,000 บาท/Post", no follower counts, no income claims. Don't invent stats.
 - **"พี่ ๆ ทีมงาน"** for the team, never "ทีมโค้ช". The tone is friendly and a bit cute — `น้อง ๆ`, soft particles like `นะ` / `จ้า` are fine.
 - **"Tomato Agency"** with a capital T when written out. Lowercase `tomato agency` only inside the wordmark image and the bilingual display titles.
