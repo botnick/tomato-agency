@@ -7,7 +7,7 @@
      - offline fallback to root
    ===================================================== */
 
-const VERSION    = 'tomato-v1.2.15';
+const VERSION    = 'tomato-v2.0.0';
 const CORE_CACHE = `${VERSION}-core`;
 const RUN_CACHE  = `${VERSION}-run`;
 
@@ -16,6 +16,7 @@ const CORE_ASSETS = [
   '/index.html',
   '/manifest.webmanifest',
   '/assets/css/style.css',
+  '/assets/css/pages.css',
   '/assets/js/main.js',
   '/assets/img/logo.png',
   '/assets/img/wordmark.png',

@@ -1,6 +1,8 @@
 name = "tomato-agency"
 compatibility_date = "2026-05-27"
-pages_build_output_dir = "."
+# Eleventy builds the static site into ./dist — set CF Pages "Build command"
+# to `npm run build` and "Build output directory" to `dist`.
+pages_build_output_dir = "dist"
 
 [vars]
 SITE_URL = "https://tomato.in.th"

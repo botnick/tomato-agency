@@ -1,0 +1,55 @@
+---
+layout: base.njk
+pagination:
+  data: collections.categories
+  size: 1
+  alias: cat
+permalink: "/blog/category/{{ cat.slug }}/"
+eleventyComputed:
+  title: "{{ cat.name }}"
+  metaTitle: "บทความหมวด {{ cat.name }} — Tomato Agency"
+  description: "รวมบทความหมวด {{ cat.name }} จาก Tomato Agency เขียนจากประสบการณ์จริงของทีมดูแล Live VJ"
+  breadcrumbs:
+    - name: "บทความ"
+      url: "/blog/"
+    - name: "{{ cat.name }}"
+---
+
+{% include "partials/breadcrumbs.njk" %}
+
+<section class="lp-hero">
+  <div class="container lp-hero__inner">
+    <span class="lp-kicker">หมวดหมู่</span>
+    <h1 class="lp-title">{{ cat.name }}</h1>
+    <p class="lp-lead">บทความในหมวด {{ cat.name }} ทั้งหมด</p>
+  </div>
+</section>
+
+<section class="blog-list">
+  <div class="container">
+    <nav class="chips" aria-label="หมวดหมู่บทความ">
+      <a class="chip" href="/blog/">ทั้งหมด</a>
+      {% for c in collections.categories %}
+      <a class="chip{% if c.slug == cat.slug %} is-active{% endif %}" href="/blog/category/{{ c.slug }}/">{{ c.name }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="card-grid card-grid--blog">
+      {% for p in collections.posts %}
+        {% if p.data.category == cat.name %}
+        <a class="pcard" href="{{ p.url }}">
+          {% if p.data.cover %}<div class="pcard__media"><img src="{{ p.data.cover }}" alt="" width="600" height="315" loading="lazy"></div>{% endif %}
+          <div class="pcard__body">
+            <div class="pcard__meta">
+              <span class="pcard__cat">{{ p.data.category }}</span>
+              <time datetime="{{ p.date | isoDate }}">{{ p.date | thaiDate }}</time>
+            </div>
+            <h2 class="pcard__title">{{ p.data.title }}</h2>
+            <p class="pcard__excerpt">{{ p.data.description }}</p>
+          </div>
+        </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,108 @@
+---
+layout: base.njk
+---
+{% include "partials/breadcrumbs.njk" %}
+
+<article class="post">
+  <div class="container post__container">
+    <header class="post__head">
+      <div class="post__meta">
+        {% if category %}<a class="post__cat" href="/blog/category/{{ categorySlug }}/">{{ category }}</a>{% endif %}
+        <time datetime="{{ page.date | isoDate }}">{{ page.date | thaiDate }}</time>
+        <span class="post__rt">{{ readingTime }} นาทีอ่าน</span>
+      </div>
+      <h1 class="post__title">{{ title }}</h1>
+      {% if description %}<p class="post__lead">{{ description }}</p>{% endif %}
+    </header>
+
+    {% if cover %}
+    <figure class="post__cover">
+      <img src="{{ cover }}" alt="{{ coverAlt if coverAlt else title }}" width="1200" height="630" loading="eager" fetchpriority="high">
+    </figure>
+    {% endif %}
+
+    <div class="post__body prose">
+      {{ content | safe }}
+    </div>
+
+    {% if faq %}
+    <section class="post__faq" aria-label="คำถามที่พบบ่อย">
+      <h2>คำถามที่พบบ่อย</h2>
+      <div class="faq__list">
+        {% for item in faq %}
+        <details class="faq__item">
+          <summary><span>{{ item.q }}</span><span class="faq__plus" aria-hidden="true"></span></summary>
+          <div class="faq__answer">{{ item.a | safe }}</div>
+        </details>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <aside class="post__author">
+      <img src="/assets/img/logo.png" alt="" width="56" height="56" loading="lazy">
+      <div>
+        <strong>{{ author }}</strong>
+        <p>ทีมดูแล Live VJ ของ Tomato Agency — ค่ายไลฟ์สดของไทยที่ดูแลวีเจมากว่า {{ site.founded }} ปี เขียนจากประสบการณ์ตรงในการพาน้อง ๆ เริ่มไลฟ์</p>
+        <a href="{{ site.line.url }}" target="_blank" rel="noopener">ปรึกษาทีมงานทาง LINE {{ site.line.handle }} →</a>
+      </div>
+    </aside>
+
+    {% set related = collections.posts | exclude(page.url) | limit(3) %}
+    {% if related.length %}
+    <section class="post__related" aria-labelledby="relatedTitle">
+      <h2 id="relatedTitle" class="post__related-title">บทความที่เกี่ยวข้อง</h2>
+      <div class="card-grid">
+        {% for p in related %}
+        <a class="pcard" href="{{ p.url }}">
+          {% if p.data.cover %}<div class="pcard__media"><img src="{{ p.data.cover }}" alt="" width="600" height="315" loading="lazy"></div>{% endif %}
+          <div class="pcard__body">
+            {% if p.data.category %}<span class="pcard__cat">{{ p.data.category }}</span>{% endif %}
+            <h3 class="pcard__title">{{ p.data.title }}</h3>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </div>
+</article>
+
+{% include "partials/cta-band.njk" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "{{ page.url | absUrl(site.url) }}#article",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absUrl(site.url) }}" },
+  "headline": {{ title | dump | safe }},
+  "description": {{ description | dump | safe }},
+  "image": ["{{ (cover if cover else site.ogImageDefault) | absUrl(site.url) }}"],
+  "datePublished": "{{ page.date | isoDate }}",
+  "dateModified": "{{ modifiedTime | isoDate }}",
+  "wordCount": {{ wordCount }},
+  "inLanguage": "th-TH",
+  {% if category %}"articleSection": {{ category | dump | safe }},{% endif %}
+  {% if tagsList %}"keywords": {{ tagsList | join(", ") | dump | safe }},{% endif %}
+  "author": { "@type": "Organization", "name": {{ author | dump | safe }}, "url": "{{ site.url }}/" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tomato Agency",
+    "logo": { "@type": "ImageObject", "url": "{{ site.url }}{{ site.logo }}", "width": 512, "height": 512 }
+  }
+}
+</script>
+{% if faq %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "{{ page.url | absUrl(site.url) }}#faq",
+  "mainEntity": [
+    {% for item in faq %}{ "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | striptags | dump | safe }} } }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}

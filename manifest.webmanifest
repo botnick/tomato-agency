@@ -1,7 +1,7 @@
 {
-  "name": "tomato agency — Idol Audition & Talent Management",
-  "short_name": "tomato",
-  "description": "เอเจนซี่ค้นหาและพัฒนาไอดอลรุ่นใหม่ของประเทศไทย เปิดรับสมัครออดิชั่นแบบครบวงจร",
+  "name": "Tomato Agency — รับสมัครวีเจ Live VJ",
+  "short_name": "Tomato",
+  "description": "ค่าย Live VJ ของไทย รับสมัครวีเจไลฟ์สด สมัครฟรี ทำที่บ้านได้ จัดเวลาเอง ทีมงานดูแลใกล้ชิด",
   "id": "/",
   "start_url": "/?source=pwa",
   "scope": "/",
@@ -26,22 +26,22 @@
   ],
   "shortcuts": [
     {
-      "name": "สมัครออดิชั่น",
-      "short_name": "Audition",
-      "description": "เริ่มกรอกใบสมัครออดิชั่นไอดอล",
-      "url": "/?utm_source=pwa#audition",
+      "name": "สมัครวีเจ",
+      "short_name": "สมัครวีเจ",
+      "description": "ดูรายละเอียดและสมัครเป็น Live VJ",
+      "url": "/vj/?utm_source=pwa",
       "icons": [{ "src": "/assets/icons/icon-192x192.png", "sizes": "192x192" }]
     },
     {
-      "name": "บริการ",
-      "short_name": "Services",
-      "url": "/?utm_source=pwa#services",
+      "name": "บทความ",
+      "short_name": "บทความ",
+      "url": "/blog/?utm_source=pwa",
       "icons": [{ "src": "/assets/icons/icon-192x192.png", "sizes": "192x192" }]
     },
     {
       "name": "ติดต่อ",
-      "short_name": "Contact",
-      "url": "/?utm_source=pwa#contact",
+      "short_name": "ติดต่อ",
+      "url": "/contact/?utm_source=pwa",
       "icons": [{ "src": "/assets/icons/icon-192x192.png", "sizes": "192x192" }]
     }
   ],
@@ -51,7 +51,7 @@
       "type": "image/png",
       "sizes": "1200x630",
       "form_factor": "wide",
-      "label": "tomato agency — Idol Audition landing page"
+      "label": "Tomato Agency — รับสมัครวีเจ Live VJ"
     }
   ],
   "related_applications": []

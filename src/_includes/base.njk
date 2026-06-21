@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {% set pageUrl = (page.url | absUrl(site.url)) %}
+  {% set fullTitle = metaTitle if metaTitle else (title + " — " + site.name) %}
+  {% set metaDesc = description if description else site.description %}
+  {% set ogImg = (ogImage if ogImage else site.ogImageDefault) | absUrl(site.url) %}
+
+  <!-- ===== Primary SEO ===== -->
+  <title>{{ fullTitle }}</title>
+  <meta name="description" content="{{ metaDesc }}">
+  {% if keywords %}<meta name="keywords" content="{{ keywords }}">{% endif %}
+  <meta name="author" content="Tomato Agency">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="{{ pageUrl }}">
+
+  <!-- ===== Locale / Geo ===== -->
+  <meta name="language" content="Thai">
+  <meta name="geo.region" content="TH-10">
+  <meta name="geo.placename" content="Bangkok">
+  <meta name="geo.position" content="13.7563;100.5018">
+  <meta name="ICBM" content="13.7563, 100.5018">
+
+  <!-- ===== Theme / Brand color ===== -->
+  <meta name="theme-color" content="#C41C23" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#7A0F14" media="(prefers-color-scheme: dark)">
+  <meta name="msapplication-TileColor" content="#C41C23">
+  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tomato Agency">
+  <meta name="application-name" content="Tomato Agency">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:type" content="{{ ogType if ogType else 'website' }}">
+  <meta property="og:site_name" content="Tomato Agency">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:title" content="{{ ogTitle if ogTitle else fullTitle }}">
+  <meta property="og:description" content="{{ metaDesc }}">
+  <meta property="og:image" content="{{ ogImg }}">
+  <meta property="og:image:secure_url" content="{{ ogImg }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ ogTitle if ogTitle else fullTitle }}">
+  <meta property="og:locale" content="th_TH">
+
+  <!-- ===== Twitter Card ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@tomatoagency">
+  <meta name="twitter:creator" content="@tomatoagency">
+  <meta name="twitter:title" content="{{ ogTitle if ogTitle else fullTitle }}">
+  <meta name="twitter:description" content="{{ metaDesc }}">
+  <meta name="twitter:image" content="{{ ogImg }}">
+  {% if readingTime %}<meta name="twitter:label1" content="เวลาอ่าน">
+  <meta name="twitter:data1" content="{{ readingTime }} นาที">{% endif %}
+  {% if author %}<meta name="twitter:label2" content="เขียนโดย">
+  <meta name="twitter:data2" content="{{ author }}">{% endif %}
+
+  {% if ogType == 'article' %}
+  <!-- ===== Article (Open Graph) ===== -->
+  {% if publishedTime %}<meta property="article:published_time" content="{{ publishedTime | isoDate }}">{% endif %}
+  {% if modifiedTime %}<meta property="article:modified_time" content="{{ modifiedTime | isoDate }}">{% endif %}
+  <meta property="article:publisher" content="{{ site.url }}/">
+  {% if articleSection %}<meta property="article:section" content="{{ articleSection }}">{% endif %}
+  {% for t in (articleTags or []) %}<meta property="article:tag" content="{{ t }}">
+  {% endfor %}
+  {% endif %}
+
+  <!-- ===== hreflang ===== -->
+  <link rel="alternate" hreflang="th-TH" href="{{ pageUrl }}">
+  <link rel="alternate" hreflang="x-default" href="{{ pageUrl }}">
+
+  <!-- ===== Feed ===== -->
+  <link rel="alternate" type="application/rss+xml" title="Tomato Agency — บทความ" href="{{ site.url }}/feed.xml">
+
+  <!-- ===== Favicon / Icons (PWA) ===== -->
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="shortcut icon" href="/assets/icons/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="mask-icon" href="/assets/icons/favicon.png" color="#C41C23">
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- ===== Resource Hints ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="preload" as="image" href="/assets/img/wordmark.png" fetchpriority="high">
+
+  <!-- ===== Fonts ===== -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Italiana&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap">
+
+  <!-- ===== Stylesheet ===== -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+
+  <!-- ===== Structured Data (JSON-LD) — Organization + WebSite + WebPage + Breadcrumb ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ site.url }}/#organization",
+        "name": "Tomato Agency",
+        "alternateName": ["tomato agency", "Tomato Agency Thailand", "Tomato VJ Agency"],
+        "url": "{{ site.url }}/",
+        "logo": { "@type": "ImageObject", "url": "{{ site.url }}{{ site.logo }}", "width": 512, "height": 512 },
+        "image": "{{ site.url }}{{ site.ogImageDefault }}",
+        "description": "เอเจนซี่ดูแลวีเจไลฟ์สด (Live VJ) ของไทย รับสมัครวีเจ สมัครฟรี ทำที่บ้านได้",
+        "foundingDate": "{{ site.founded }}",
+        "address": { "@type": "PostalAddress", "addressLocality": "Bangkok", "addressRegion": "Bangkok", "addressCountry": "TH" },
+        "areaServed": { "@type": "Country", "name": "Thailand" },
+        "sameAs": ["{{ site.ig.url }}", "{{ site.line.url }}"],
+        "contactPoint": [{ "@type": "ContactPoint", "contactType": "customer service", "availableLanguage": ["Thai", "English"], "areaServed": "TH", "url": "{{ site.ig.url }}" }]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ site.url }}/#website",
+        "url": "{{ site.url }}/",
+        "name": "Tomato Agency",
+        "description": "เอเจนซี่ดูแลวีเจไลฟ์สด (Live VJ) ของไทย",
+        "publisher": { "@id": "{{ site.url }}/#organization" },
+        "inLanguage": "th-TH",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": { "@type": "EntryPoint", "urlTemplate": "{{ site.url }}/blog/?q={search_term_string}" },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "{{ pageUrl }}#webpage",
+        "url": "{{ pageUrl }}",
+        "name": {{ fullTitle | dump | safe }},
+        "isPartOf": { "@id": "{{ site.url }}/#website" },
+        "about": { "@id": "{{ site.url }}/#organization" },
+        "description": {{ metaDesc | dump | safe }},
+        "inLanguage": "th-TH"
+      }{% if breadcrumbs %},
+      {
+        "@type": "BreadcrumbList",
+        "@id": "{{ pageUrl }}#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "หน้าแรก", "item": "{{ site.url }}/" }{% for c in breadcrumbs %},
+          { "@type": "ListItem", "position": {{ loop.index + 1 }}, "name": {{ c.name | dump | safe }}{% if c.url %}, "item": "{{ c.url | absUrl(site.url) }}"{% endif %} }{% endfor %}
+        ]
+      }{% endif %}
+    ]
+  }
+  </script>
+</head>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+
+  <!-- ===== Skip link ===== -->
+  <a href="#main" class="skip-link">ข้ามไปยังเนื้อหาหลัก</a>
+
+  {% include "partials/topbar.njk" %}
+  {% include "partials/header.njk" %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+  {% include "partials/fab.njk" %}
+
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

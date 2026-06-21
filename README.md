@@ -1,94 +1,93 @@
-# Tomato Agency — Landing Page
+# Tomato Agency — เว็บไซต์ (multi-page + blog)
 
-Static, PWA-ready landing page for **Tomato Agency** — เอเจนซี่ดูแลวีเจไลฟ์สด (Live VJ) ของไทย.
+เว็บไซต์ของ **Tomato Agency** — ค่าย Live VJ ของไทย รับสมัครวีเจไลฟ์สด.
+สร้างด้วย **Eleventy (11ty)** เป็น static site ล้วน ไม่มี runtime framework deploy บน Cloudflare Pages.
 
-[![Built with HTML/CSS/JS](https://img.shields.io/badge/stack-vanilla-c41c23?style=flat-square)](https://github.com/botnick/tomato-agency)
+[![Eleventy](https://img.shields.io/badge/built%20with-Eleventy-c41c23?style=flat-square)](https://www.11ty.dev/)
 [![Deploy: Cloudflare Pages](https://img.shields.io/badge/deploy-Cloudflare%20Pages-c41c23?style=flat-square&logo=cloudflare&logoColor=white)](https://pages.cloudflare.com/)
 [![PWA](https://img.shields.io/badge/PWA-enabled-c41c23?style=flat-square)](https://web.dev/progressive-web-apps/)
-[![License](https://img.shields.io/badge/license-MIT-c41c23?style=flat-square)](#license)
 
 ## Stack
 
-- HTML / CSS / JS (no framework, no build step required)
-- PWA: `manifest.webmanifest` + service worker (stale-while-revalidate)
-- Full SEO: Open Graph, Twitter cards, JSON-LD (Organization, WebSite, FAQPage, Service, BreadcrumbList)
-- Cloudflare Pages friendly: `_headers`, `_redirects`, `wrangler.toml`
+- **Eleventy 3 (ESM)** สร้าง HTML/CSS/JS แบบ static — ไม่มี client framework
+- เทมเพลต Nunjucks + บทความ Markdown (เพิ่มโพสต์ = วางไฟล์ `.md` ไฟล์เดียว)
+- PWA: `manifest.webmanifest` + service worker (network-first HTML, stale-while-revalidate assets)
+- **SEO ระดับ Rank Math/Yoast**: title template, meta, canonical, OG + Twitter, article tags, hreflang,
+  JSON-LD (Organization, WebSite+SearchAction, WebPage, BreadcrumbList, BlogPosting, FAQPage),
+  XML sitemap (+image), RSS feed, breadcrumbs, reading time
+- Cloudflare Pages: `_headers`, `_redirects`, `wrangler.toml`
 
-## Brand
+## โครงสร้าง
 
-- Colors: `#C41C23` red · `#FFB5CD` pink · `#FFFFFF` white · `#BAE2F7` blue
-- Display type: DM Serif Display italic (close to **Manison**) + Manrope sans
-- Thai body: IBM Plex Sans Thai
-- Key elements: tomato · bow · lace · crown · heart · sparkle · trophy · berries
+```
+.
+├── eleventy.config.js          ตั้งค่า 11ty (passthrough, collections, filters)
+├── package.json                สคริปต์ build/dev/humanize:check
+├── src/
+│   ├── _data/site.js           ข้อมูลแบรนด์ + เมนู (single source of truth)
+│   ├── _includes/
+│   │   ├── base.njk            โครง HTML + <head> SEO + JSON-LD
+│   │   ├── layouts/page.njk    เลย์เอาต์หน้าทั่วไป (+ breadcrumb + CTA)
+│   │   ├── layouts/post.njk    เลย์เอาต์บทความ (+ cover, author, related, schema)
+│   │   └── partials/           topbar, header, footer, fab, breadcrumbs, cta-band
+│   ├── index.njk               หน้าแรก
+│   ├── pages/                  หน้า keyword: vj, sangkat, ngan-tob-chat, live-bigo,
+│   │                           ngan-online, idol-plus, faq, contact, privacy
+│   ├── blog.njk                หน้า list บทความ  (/blog/)
+│   ├── blog-category.njk       หน้า category (/blog/category/<slug>/)
+│   ├── blog/*.md               บทความ (+ blog.11tydata.js = layout/tags/computed)
+│   ├── sitemap.njk             → /sitemap.xml
+│   ├── feed.njk                → /feed.xml (RSS)
+│   └── 404.njk
+├── assets/                     css (style.css + pages.css), js, img (+ img/blog covers), icons
+├── _headers _redirects robots.txt manifest.webmanifest sw.js browserconfig.xml .well-known/
+├── docs/CONTENT-GUIDE.md       วิธีเขียนบทความ + humanize + เพิ่มโพสต์
+└── scripts/                    og-gallery.html (สร้าง cover), humanize-check.mjs
+```
 
-## Local preview
+ไฟล์ static (assets, _headers, _redirects, robots.txt, manifest, sw.js ฯลฯ) ถูก **passthrough-copy** ลง `dist/`
 
-The site is fully static — open `index.html` directly, or use any static server:
+## รันในเครื่อง
 
 ```bash
-# any one of:
-npx serve .
-python -m http.server 8000
-npx wrangler pages dev .   # closest to Cloudflare Pages runtime
+npm install        # ครั้งแรก
+npm run dev        # eleventy --serve ที่ http://localhost:8088
+npm run build      # สร้างไฟล์ลง ./dist
+npm run humanize:check   # สแกนกลิ่น AI / over-claim ในบทความ
 ```
 
 ## Deploy — Cloudflare Pages
 
-### Option A · Direct upload (no GitHub)
+> ⚠️ โปรเจกต์นี้ **มี build step แล้ว** (เดิมไม่มี) — ต้องตั้งค่า CF Pages ใหม่ครั้งเดียว
 
-1. Install wrangler once: `npm i -g wrangler` (or use `npx wrangler`).
-2. Authenticate: `npx wrangler login`.
-3. From this folder:
-   ```bash
-   npx wrangler pages deploy . --project-name=tomato-agency
-   ```
-4. First run creates the project; subsequent runs deploy to production.
+ใน Cloudflare dashboard → **Workers & Pages → tomato-agency → Settings → Build**:
 
-### Option B · GitHub integration
+- **Build command**: `npm run build`
+- **Build output directory**: `dist`
+- **Root directory**: `/`
 
-1. Push the contents of this folder to a GitHub repo.
-2. In the Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**.
-3. Settings:
-   - **Build command**: *(leave empty)*
-   - **Build output directory**: `/`
-   - **Root directory**: `/`
-4. Add custom domain `tomato.in.th` in **Custom domains** once created.
+จากนั้น `git push` แล้ว CF Pages จะ build + deploy ให้เอง
+หรือ deploy ตรง: `npm run deploy` (= build + `wrangler pages deploy dist`)
 
-## Project layout
+custom domain `tomato.in.th` ตั้งใน **Custom domains** ตามเดิม
 
-```
-.
-├── index.html                  Landing page
-├── manifest.webmanifest        PWA manifest
-├── sw.js                       Service worker
-├── robots.txt                  Crawler rules + sitemap pointer
-├── sitemap.xml                 SEO sitemap
-├── browserconfig.xml           Windows tile config
-├── _headers                    CF Pages: cache + security headers
-├── _redirects                  CF Pages: vanity URLs + www→apex
-├── wrangler.toml               CF Pages project config
-├── package.json                Dev scripts (wrangler)
-├── .well-known/
-│   └── security.txt
-└── assets/
-    ├── css/style.css           Brand stylesheet (mobile-first)
-    ├── js/main.js              Splash, scroll reveal, counter, etc.
-    ├── img/                    logo, og-image
-    ├── icons/                  Favicons + PWA icons + apple touch
-    └── patterns/               (reserved for future SVG patterns)
-```
+## เพิ่มบทความใหม่
 
-## What's included
+ดู [`docs/CONTENT-GUIDE.md`](docs/CONTENT-GUIDE.md) — สรุป: วางไฟล์ `src/blog/<slug>.md` + cover 1200×630 แล้ว `npm run build`
+sitemap / RSS / หน้า category / "บทความล่าสุด" หน้าแรก อัปเดตให้เองทั้งหมด
 
-- **Splash screen** — animated CI-brand splash with lace frame, bow, crown, sparkle, marquee ribbon.
-- **Hero** — fluid wordmark, orbiting brand elements, marquee strip.
-- **About / Stats / Services / Process / Talent / Voices / FAQ / CTA / Footer.**
-- **PWA**: installable, with three shortcuts (Apply / Services / Contact). Maskable icons supported.
-- **SEO**: `<title>`, meta description, OG, Twitter card, JSON-LD Organization + WebSite + FAQPage + Service + BreadcrumbList.
-- **Accessibility**: skip link, focus rings, ARIA labels, `prefers-reduced-motion` respected.
-- **Responsive**: mobile-first, tested across 320px → 1440px+ breakpoints.
+## OG covers (รูปปกบทความ — original ไม่ใช่ AI)
 
-## Update the canonical domain
+cover ทุกใบสร้างจาก `scripts/og-gallery.html` (กราฟิกแบรนด์ + motif SVG วาดเอง ไม่ขโมย ไม่ AI):
+เปิดไฟล์นี้ในเบราว์เซอร์ที่ viewport กว้าง ≥ 1240px → screenshot แต่ละการ์ด (1200×630) → เซฟลง
+`assets/img/blog/<slug>.png` ใช้เป็นทั้งรูป hero ในบทความและ OG image
 
-Search-and-replace `https://tomato.in.th` in `index.html`, `sitemap.xml`, `robots.txt`, `_redirects`,
-and the JSON-LD blocks if the production hostname changes.
+## เปลี่ยนโดเมน canonical
+
+โดเมนหลักอยู่ที่ `src/_data/site.js` (`url`) — แก้ที่เดียวกระจายทั้งเว็บ
+ส่วนที่ยัง hardcode: `sw.js`, `_redirects`, `robots.txt`, `.well-known/security.txt` (grep `tomato.in.th`)
+
+## กฎเนื้อหา / แบรนด์
+
+อ่าน [`CLAUDE.md`](CLAUDE.md) — Live VJ เป็นบริการหลัก, ไม่กุตัวเลข/รายได้, "พี่ ๆ ทีมงาน"/"น้อง ๆ",
+หน้าหลักพูดถึง Bigo Live + ไลฟ์สดทั่วไปเท่านั้น (บทความเอ่ยแอพอื่นได้เพื่อ SEO)

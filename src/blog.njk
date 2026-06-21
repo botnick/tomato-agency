@@ -1,0 +1,49 @@
+---
+layout: base.njk
+permalink: /blog/
+title: "บทความ"
+metaTitle: "บทความ — เริ่มเป็น Live VJ, ไลฟ์สด & งานออนไลน์ | Tomato Agency"
+description: "รวมบทความจาก Tomato Agency — วิธีเริ่มเป็น Live VJ เทคนิคไลฟ์สด การหางานออนไลน์ทำที่บ้าน และการดูแลตัวเองในสายงานไลฟ์ เขียนจากประสบการณ์ตรงของทีม"
+keywords: "บทความวีเจ, บทความไลฟ์สด, วิธีเป็นวีเจ, เทคนิคไลฟ์สด, งานออนไลน์ทำที่บ้าน"
+breadcrumbs:
+  - name: "บทความ"
+---
+
+{% include "partials/breadcrumbs.njk" %}
+
+<section class="lp-hero">
+  <div class="container lp-hero__inner">
+    <span class="lp-kicker">Journal</span>
+    <h1 class="lp-title">บทความจากทีม Tomato</h1>
+    <p class="lp-lead">เรื่องที่อยากเล่าให้น้อง ๆ ฟัง ตั้งแต่วิธีเริ่มไลฟ์ครั้งแรก เทคนิคหน้ากล้อง ไปจนถึงการดูแลใจในวันที่ท้อ — เขียนจากประสบการณ์จริงของทีม</p>
+  </div>
+</section>
+
+<section class="blog-list">
+  <div class="container">
+    {% if collections.categories.length %}
+    <nav class="chips" aria-label="หมวดหมู่บทความ">
+      <a class="chip is-active" href="/blog/">ทั้งหมด</a>
+      {% for c in collections.categories %}
+      <a class="chip" href="/blog/category/{{ c.slug }}/">{{ c.name }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+
+    <div class="card-grid card-grid--blog">
+      {% for p in collections.posts %}
+      <a class="pcard" href="{{ p.url }}">
+        {% if p.data.cover %}<div class="pcard__media"><img src="{{ p.data.cover }}" alt="" width="600" height="315" loading="lazy"></div>{% endif %}
+        <div class="pcard__body">
+          <div class="pcard__meta">
+            {% if p.data.category %}<span class="pcard__cat">{{ p.data.category }}</span>{% endif %}
+            <time datetime="{{ p.date | isoDate }}">{{ p.date | thaiDate }}</time>
+          </div>
+          <h2 class="pcard__title">{{ p.data.title }}</h2>
+          <p class="pcard__excerpt">{{ p.data.description }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

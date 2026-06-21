@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>OG cover generator</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#333; padding:20px; display:flex; flex-direction:column; gap:24px; }
+  :root{
+    --red:#C41C23; --red-deep:#8E1218; --pink:#FFB5CD; --pink-soft:#FFE5EE;
+    --blue:#BAE2F7; --cream:#FFF9F7; --ink:#1A1316; --ink-mid:#5C4B52;
+  }
+  .cover{
+    width:1200px; height:630px; position:relative; overflow:hidden;
+    font-family:'IBM Plex Sans Thai',sans-serif; color:var(--ink);
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:68px 72px;
+  }
+  .cover::after{ /* subtle frame */
+    content:""; position:absolute; inset:22px; border:2px solid rgba(196,28,35,.14);
+    border-radius:28px; pointer-events:none;
+  }
+  .t-warm{ background:radial-gradient(120% 120% at 12% 0%, var(--pink-soft) 0%, transparent 55%),radial-gradient(120% 130% at 100% 100%, var(--blue) 0%, transparent 45%), var(--cream); }
+  .t-pinky{ background:radial-gradient(120% 120% at 90% 0%, var(--pink) 0%, transparent 55%), var(--cream); }
+  .t-sky{ background:radial-gradient(120% 120% at 0% 0%, var(--blue) 0%, transparent 55%),radial-gradient(120% 120% at 100% 100%, var(--pink-soft) 0%, transparent 50%), var(--cream); }
+  .t-red{ background:linear-gradient(135deg, var(--red) 0%, var(--red-deep) 100%); }
+  .t-red .chip{ background:rgba(255,255,255,.18); color:#fff; }
+  .t-red .headline, .t-red .brand-name, .t-red .brand-dom{ color:#fff; }
+  .t-red .motif{ color:rgba(255,255,255,.16); }
+  .t-red::after{ border-color:rgba(255,255,255,.25); }
+  .top{ display:flex; align-items:center; gap:14px; position:relative; z-index:2; }
+  .chip{ font-size:24px; font-weight:700; background:var(--pink-soft); color:var(--red);
+    padding:9px 22px; border-radius:999px; }
+  .headline{ position:relative; z-index:2; font-weight:700; font-size:72px; line-height:1.18;
+    color:var(--ink); max-width:14ch; letter-spacing:-.5px; }
+  .headline em{ font-style:normal; color:var(--red); }
+  .t-red .headline em{ color:#FFD9E2; }
+  .bottom{ display:flex; align-items:center; gap:16px; position:relative; z-index:2; }
+  .bottom img{ width:56px; height:56px; border-radius:50%; }
+  .brand-name{ font-family:'DM Serif Display',serif; font-style:italic; font-size:34px; color:var(--ink); }
+  .brand-dom{ font-size:22px; color:var(--ink-mid); margin-left:auto; font-weight:600; }
+  .motif{ position:absolute; right:-40px; bottom:-30px; width:420px; height:420px;
+    color:rgba(196,28,35,.10); z-index:1; }
+  .motif svg{ width:100%; height:100%; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const M = {
+  mic:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg>`,
+  chat:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 5h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 4v-4H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>`,
+  heart:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11-1 .67-3 .67-4 0z"/></svg>`,
+  crown:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 18l2-11 5 5 2-8 2 8 5-5 2 11z M3 20h18"/></svg>`,
+  live:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13M8 8a5.7 5.7 0 0 0 0 8M16 8a5.7 5.7 0 0 1 0 8"/></svg>`,
+  home:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 11l9-8 9 8M5 9.5V21h14V9.5"/><rect x="9" y="13" width="6" height="8"/></svg>`,
+  shield:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>`,
+  star:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2.9 6.9L22 9.6l-5.5 4.6L18 22l-6-3.7L6 22l1.5-7.8L2 9.6l7.1-.7z"/></svg>`,
+  people:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1M16 14a4 4 0 0 1 5 4v2"/></svg>`,
+  balance:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3v18M5 21h14M3 8l4-3 4 3-4 8a4 4 0 0 1-4-8zM13 8l4-3 4 3-4 8a4 4 0 0 1-4-8z" stroke-linejoin="round"/></svg>`,
+  spark:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>`,
+  play:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z"/></svg>`,
+};
+const COVERS = [
+  {id:'cover-vj', theme:'t-warm', chip:'งานหลัก', h:'รับสมัครวีเจ <em>Live VJ</em>', m:'mic'},
+  {id:'cover-sangkat', theme:'t-pinky', chip:'สังกัด', h:'สังกัดวีเจ <em>ดูแลใกล้ชิด</em>', m:'people'},
+  {id:'cover-chat', theme:'t-sky', chip:'งานออนไลน์', h:'งานตอบแชท <em>ทำที่บ้าน</em>', m:'chat'},
+  {id:'cover-bigo', theme:'t-warm', chip:'แพลตฟอร์ม', h:'ไลฟ์สด <em>Bigo Live</em>', m:'live'},
+  {id:'cover-online', theme:'t-sky', chip:'ยืดหยุ่น', h:'งานออนไลน์ <em>ทำที่บ้าน</em>', m:'home'},
+  {id:'cover-idolplus', theme:'t-red', chip:'โปรแกรม', h:'IDOL+ <em>เส้นทางปั้นวีเจ</em>', m:'crown'},
+  {id:'start-live-vj', theme:'t-warm', chip:'เริ่มต้นเป็นวีเจ', h:'เริ่มเป็น Live VJ <em>ครั้งแรก</em>', m:'play'},
+  {id:'sangkat-vj-worth-it', theme:'t-pinky', chip:'สังกัด &amp; อาชีพ', h:'อยู่สังกัด <em>vs</em> ไลฟ์เอง', m:'balance'},
+  {id:'ngan-tob-chat-guide', theme:'t-sky', chip:'งานออนไลน์', h:'งานตอบแชท <em>คืออะไร</em>', m:'chat'},
+  {id:'bigo-live-start', theme:'t-warm', chip:'ไลฟ์สด &amp; แพลตฟอร์ม', h:'เริ่มไลฟ์ <em>Bigo Live</em>', m:'live'},
+  {id:'7-live-techniques', theme:'t-pinky', chip:'เทคนิคไลฟ์', h:'<em>7</em> เทคนิคไลฟ์สด<br>ให้คนดูอยู่นาน', m:'spark'},
+  {id:'online-jobs-2026-safe', theme:'t-sky', chip:'งานออนไลน์', h:'งานออนไลน์ <em>ไม่โดนหลอก</em>', m:'shield'},
+  {id:'vj-character-idol-plus', theme:'t-red', chip:'พัฒนาตัวเอง', h:'วางคาแรคเตอร์วีเจ <em>ให้คนจำได้</em>', m:'star'},
+  {id:'livestream-burnout-care', theme:'t-warm', chip:'ไลฟ์สไตล์ &amp; คอมมูนิตี้', h:'ไลฟ์แล้วท้อ <em>ดูแลใจยังไง</em>', m:'heart'},
+];
+document.getElementById('stage').innerHTML = COVERS.map(c=>`
+  <div class="cover ${c.theme}" id="${c.id}">
+    <div class="top"><span class="chip">${c.chip}</span></div>
+    <div class="headline">${c.h}</div>
+    <div class="bottom">
+      <img src="/assets/img/logo.png" alt="">
+      <span class="brand-name">tomato agency</span>
+      <span class="brand-dom">tomato.in.th</span>
+    </div>
+    <div class="motif">${M[c.m]}</div>
+  </div>`).join('');
+</script>
+</body>
+</html>

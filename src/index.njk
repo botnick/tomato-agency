@@ -1,0 +1,315 @@
+---
+layout: base.njk
+metaTitle: "Tomato Agency — รับสมัครวีเจ Live VJ ของไทย สมัครฟรี ทำที่บ้านได้"
+description: "Tomato Agency ค่าย Live VJ ของไทย รับสมัครวีเจไลฟ์สด สมัครฟรี ไม่จำกัดเพศ อายุ 18 ขึ้นไป ทำที่บ้านได้ จัดเวลาเอง ทีมงานดูแลใกล้ชิด ไม่ Toxic"
+keywords: "Tomato Agency, รับสมัครวีเจ, สมัครวีเจ, สังกัดวีเจ, งานตอบแชท, ไลฟ์สด Bigo, งานออนไลน์, IDOL+, ออดิชั่นวีเจ, เอเจนซี่ไลฟ์สด, สมัครฟรี"
+bodyClass: home
+---
+
+<!-- ===== Splash Screen ===== -->
+<div class="splash" id="splash" aria-hidden="true" role="status" aria-label="กำลังโหลด Tomato Agency">
+  <div class="splash__sky">
+    <span class="splash__sparkle splash__sparkle--1"></span>
+    <span class="splash__sparkle splash__sparkle--2"></span>
+    <span class="splash__sparkle splash__sparkle--3"></span>
+    <span class="splash__sparkle splash__sparkle--4"></span>
+    <span class="splash__sparkle splash__sparkle--5"></span>
+  </div>
+  <div class="splash__center">
+    <div class="splash__core">
+      <div class="splash__halo"></div>
+      <img src="/assets/img/logo.png" alt="" class="splash__logo">
+    </div>
+    <div class="splash__text">
+      <span class="splash__brand display-serif">tomato</span>
+      <span class="splash__brand-sub display-sans">agency</span>
+    </div>
+    <p class="splash__tag">where stars are made</p>
+    <div class="splash__progress" aria-hidden="true"><span class="splash__bar"></span></div>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero" aria-labelledby="heroTitle">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+    <div class="hero__blob hero__blob--3"></div>
+    <div class="hero__grid"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <h1 id="heroTitle" class="hero__title">
+        <span class="display-serif">tomato</span>
+        <span class="display-sans">agency</span>
+        <span class="hero__title-th">รับสมัครวีเจ Live VJ ทั่วไทย</span>
+      </h1>
+
+      <p class="hero__lead">
+        ค่าย <strong>Live VJ</strong> ของไทย สมัครฟรี ทำที่บ้านได้
+        จัดเวลาเอง ทีมงานเข้าใจวงการ ดูแลกันแบบไม่ Toxic
+      </p>
+      <p class="hero__lead-en">Go! Live Your Way.</p>
+
+      <div class="hero__cta">
+        <a href="{{ site.line.url }}" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+          <span>มาสมัครเลยจ้า</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/vj/" class="btn btn--ghost btn--lg">ดูรายละเอียดงาน</a>
+      </div>
+
+      <ul class="hero__bullets" role="list">
+        <li><span class="dot"></span> สมัครฟรี ตลอดสัญญา</li>
+        <li><span class="dot"></span> 18+ ทุกเพศ</li>
+        <li><span class="dot"></span> จัดเวลาเอง</li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="orbit">
+        <div class="orbit__ring orbit__ring--1"></div>
+        <div class="orbit__ring orbit__ring--2"></div>
+        <div class="orbit__ring orbit__ring--3"></div>
+        <div class="orbit__center"><img src="/assets/img/logo.png" alt="" class="orbit__logo"></div>
+        <div class="orbit__chip orbit__chip--1"><svg viewBox="0 0 24 24" width="22" height="22" fill="#C41C23" aria-hidden="true"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11-1 .67-3 .67-4 0z"/></svg></div>
+        <div class="orbit__chip orbit__chip--2"><svg viewBox="0 0 24 24" width="22" height="22" fill="#C41C23" aria-hidden="true"><path d="M12 2l2.4 5.6L20 9l-4.5 3.5L17 18 12 15l-5 3 1.5-5.5L4 9l5.6-1.4z"/></svg></div>
+        <div class="orbit__chip orbit__chip--3"><svg viewBox="0 0 24 24" width="22" height="22" fill="#C41C23" aria-hidden="true"><path d="M5 16l-3-9 6 3 4-8 4 8 6-3-3 9zm0 3h14v2H5z"/></svg></div>
+        <div class="orbit__chip orbit__chip--4"><svg viewBox="0 0 24 24" width="22" height="22" fill="#C41C23" aria-hidden="true"><path d="M12 1l1.5 4.5L18 7l-4.5 1.5L12 13l-1.5-4.5L6 7l4.5-1.5z"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {% for i in range(0, 4) %}
+      <div class="marquee__group"{% if i > 0 %} aria-hidden="true"{% endif %}>
+        <span>tomato agency</span><span class="marquee__sep">·</span>
+        <span>live VJ</span><span class="marquee__sep">·</span>
+        <span>go! live your way</span><span class="marquee__sep">·</span>
+        <span>sweet community</span><span class="marquee__sep">·</span>
+        <span>since 2024</span><span class="marquee__sep">·</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="lace-divider" aria-hidden="true"></div></div>
+
+<!-- ===== About ===== -->
+<section class="about" id="about" aria-labelledby="aboutTitle">
+  <div class="container about__inner">
+    <div class="section-head">
+      <h2 id="aboutTitle" class="section-title">
+        <span class="display-serif">made with</span>
+        <span class="display-sans">lots of love</span>
+      </h2>
+      <p class="section-lead">
+        เริ่มจากศูนย์หรือมีประสบการณ์ก็เข้าได้ ที่นี่ไม่กดดัน ไม่ตามยอด
+        ใครก็ไลฟ์ได้ในแบบของตัวเอง
+      </p>
+    </div>
+    <div class="about__grid">
+      <article class="about__card">
+        <div class="about__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Experienced</h3>
+        <p>ดูแล Live VJ มากว่า 2 ปี ทำงานกับแพลตฟอร์มไลฟ์หลัก รู้ว่าอะไรเวิร์ค อะไรเฟล</p>
+      </article>
+      <article class="about__card">
+        <div class="about__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11-1 .67-3 .67-4 0z"/></svg></div>
+        <h3>Sweet Community</h3>
+        <p>กรุ๊ป Line ของวีเจในสังกัดคุยกันตลอด ปรึกษากันได้ทุกเรื่อง <strong>ไม่ Toxic</strong> ไม่กดดันกันเอง</p>
+      </article>
+      <article class="about__card">
+        <div class="about__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></div>
+        <h3>Hands-on Care</h3>
+        <p>ตั้งค่าไลฟ์ไม่เป็น เคยถ่ายไลฟ์ครั้งแรกแล้วเกร็ง ทักทีมได้ตลอด มีคนสอนจริงไม่ใช่แค่ส่งคู่มือ</p>
+      </article>
+      <article class="about__card">
+        <div class="about__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3>Steady Growth</h3>
+        <p>โตทีละขั้นในจังหวะของตัวเอง ทั้งสกิลไลฟ์ คาแรคเตอร์ และฐานผู้ติดตาม</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Work types → keyword pages (internal linking) ===== -->
+<section class="worktypes" id="worktypes" aria-labelledby="worktypesTitle">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="worktypesTitle" class="section-title">
+        <span class="display-serif">work with</span>
+        <span class="display-sans">tomato</span>
+      </h2>
+      <p class="section-lead">งานไลฟ์สดออนไลน์ที่ทำที่บ้านได้ เลือกแบบที่ใช่กับน้อง แล้วกดเข้าไปอ่านรายละเอียดได้เลย</p>
+    </div>
+    <div class="worktypes__grid">
+      <a class="wtcard" href="/vj/"><span class="wtcard__kicker">หลัก</span><h3>รับสมัครวีเจ</h3><p>เป็น Live VJ ในสังกัด สมัครฟรี ทำที่บ้าน</p></a>
+      <a class="wtcard" href="/sangkat/"><span class="wtcard__kicker">ดูแลใกล้ชิด</span><h3>สังกัดวีเจ</h3><p>มีทีมพี่เลี้ยง คอมมูนิตี้ไม่ Toxic</p></a>
+      <a class="wtcard" href="/ngan-tob-chat/"><span class="wtcard__kicker">เริ่มง่าย</span><h3>งานตอบแชท</h3><p>งานออนไลน์พิมพ์เก่ง เริ่มต้นได้ไว</p></a>
+      <a class="wtcard" href="/live-bigo/"><span class="wtcard__kicker">แพลตฟอร์ม</span><h3>ไลฟ์สด Bigo</h3><p>ไลฟ์บน Bigo Live พร้อมทีมช่วยตั้งค่า</p></a>
+      <a class="wtcard" href="/ngan-online/"><span class="wtcard__kicker">ยืดหยุ่น</span><h3>งานออนไลน์</h3><p>ทำที่บ้าน จัดเวลาเอง ทุกจังหวัด</p></a>
+      <a class="wtcard wtcard--accent" href="/idol-plus/"><span class="wtcard__kicker">โปรแกรม</span><h3>IDOL+</h3><p>เส้นทางพัฒนาวีเจให้โตเป็นที่รู้จัก</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Manifesto band ===== -->
+<section class="manifesto" aria-label="จุดยืนของเรา">
+  <div class="container manifesto__inner">
+    <svg class="manifesto__crown" viewBox="0 0 80 56" aria-hidden="true"><path d="M8 38l4-22 14 12L40 8l14 20 14-12 4 22z M8 42h64v8H8z" fill="currentColor"/></svg>
+    <p class="manifesto__quote">
+      <span class="display-serif">the sweetest place</span>
+      <span class="display-sans">to go live.</span>
+    </p>
+    <p class="manifesto__caption">เริ่ม Live VJ ครั้งแรก หรือย้ายค่ายมาจากที่อื่น เราพร้อมคุยและพาเริ่มจากจุดที่คุณอยู่</p>
+    <ul class="manifesto__pills" role="list">
+      <li><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>สมัครฟรี ตลอดสัญญา</span></li>
+      <li><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>18+ ทุกเพศ</span></li>
+      <li><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>ทำที่บ้าน ทุกจังหวัด</span></li>
+      <li><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>จัดเวลาเอง</span></li>
+      <li><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>ทีมพร้อมตอบทุกเรื่อง</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== Process ===== -->
+<section class="process" id="process" aria-labelledby="processTitle">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="processTitle" class="section-title">
+        <span class="display-serif">let's start</span>
+        <span class="display-sans">together</span>
+      </h2>
+      <p class="section-lead">แค่ 4 สเต็ปง่าย ๆ ใช้เวลาไม่นาน ก็พร้อมเปิดไลฟ์ครั้งแรกในบ้าน Tomato แล้ว</p>
+    </div>
+    <ol class="process__list">
+      <li class="process__step"><div class="process__num">01</div><div class="process__body"><h3>กรอกใบสมัครก่อนน้า</h3><p>กรอกข้อมูลให้ครบ <strong>ตามจริงนะ</strong> แนบรูป Selfie สวย ๆ กับคลิปแนะนำตัวสั้น ๆ 5–10 วินาที</p></div></li>
+      <li class="process__step"><div class="process__num">02</div><div class="process__body"><h3>ทีมแอบเข้าไปดู</h3><p>พี่ ๆ จะแอบเข้าไปอ่านโปรไฟล์เบื้องต้น เช็คให้แน่ใจว่าทุกอย่างพร้อม ก่อนส่งต่อทีมคัดเลือก</p></div></li>
+      <li class="process__step"><div class="process__num">03</div><div class="process__body"><h3>รอผลแป๊บนึง</h3><p>ทีมคัดเลือกจะพิจารณาแล้วติดต่อกลับภายใน <strong>1–3 วันทำการ</strong> (พักเสาร์-อาทิตย์นะ)</p></div></li>
+      <li class="process__step"><div class="process__num">04</div><div class="process__body"><h3>ยินดีต้อนรับสู่ครอบครัว</h3><p>ทีมจะทักไปแจ้งผ่าน <strong>LINE Official</strong> แล้วพาเริ่มไลฟ์ครั้งแรกพร้อมพี่เลี้ยงไปด้วยกันเลย</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<div class="gingham-strip" aria-hidden="true"></div>
+
+<!-- ===== Join If You Are ===== -->
+<section class="talent" id="talent" aria-labelledby="talentTitle">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="talentTitle" class="section-title">
+        <span class="display-serif">perfect</span>
+        <span class="display-sans">for you</span>
+      </h2>
+      <p class="section-lead">ขอแค่มีเน็ตกับใจรัก ที่เหลือพี่ ๆ ทีมงานช่วยดูเองหมด ไม่ต้องรู้อะไรมาก่อนเลย</p>
+    </div>
+    <div class="join__grid">
+      <article class="join__card"><div class="join__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Side Income</h3><p>เลิกงาน-เลิกเรียนแล้วเปิดไลฟ์ได้ ทำควบคู่กับงานหลักหรือเรียนสบาย ๆ</p></article>
+      <article class="join__card"><div class="join__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12a7 7 0 0 1 14 0"/><path d="M12 5v7l5 3"/><circle cx="12" cy="12" r="10"/></svg></div><h3>Work From Anywhere</h3><p>ห้องนอน คอนโด คาเฟ่ ที่บ้านต่างจังหวัด ก็ไลฟ์ได้หมด ไม่ต้องเข้าออฟฟิศ</p></article>
+      <article class="join__card"><div class="join__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></div><h3>All Genders, 18+</h3><p>ไม่ต้องมีประสบการณ์มาก่อน ไม่ต้องเก่งกล้อง ขอแค่อยากลองและเปิดใจเรียนรู้</p></article>
+      <article class="join__card"><div class="join__icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h3>Your Own Schedule</h3><p>กี่วันต่อสัปดาห์ ตื่นมาไลฟ์ตอนเช้า หรือดึก ๆ ก็ได้นะ ขอแค่สม่ำเสมอนิดหน่อย</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section class="voices" id="voices" aria-labelledby="voicesTitle">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="voicesTitle" class="section-title">
+        <span class="display-serif">voices from</span>
+        <span class="display-sans">our family</span>
+      </h2>
+    </div>
+    <div class="voices__grid">
+      <blockquote class="voice">
+        <svg class="voice__quote" viewBox="0 0 24 24" width="32" height="32" fill="#C41C23" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V7z"/></svg>
+        <p>เข้ามาแบบไม่รู้อะไรเลย พี่ ๆ ค่อย ๆ สอนตั้งแต่ตั้งกล้อง จัดไฟ ยันวิธีคุยหน้าไลฟ์ ตอนนี้มีคนตามดูประจำแล้ว</p>
+        <footer><strong>Mintra</strong><span>Live VJ · ในสังกัด 1 ปี+</span></footer>
+      </blockquote>
+      <blockquote class="voice">
+        <svg class="voice__quote" viewBox="0 0 24 24" width="32" height="32" fill="#C41C23" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V7z"/></svg>
+        <p>สมัครง่ายมาก กรอกผ่าน LINE 5 นาที ทีมงานติดต่อกลับเร็ว ดูแลและซัพพอร์ตจริง ไม่ใช่แค่คำพูด</p>
+        <footer><strong>Praewa</strong><span>Live VJ · ในสังกัด</span></footer>
+      </blockquote>
+      <blockquote class="voice">
+        <svg class="voice__quote" viewBox="0 0 24 24" width="32" height="32" fill="#C41C23" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V7z"/></svg>
+        <p>ที่นี่ไม่ได้แค่สอนไลฟ์ แต่สร้าง "คน" ที่มั่นใจในตัวเอง สังคมน่ารัก ไม่ Toxic เหมือนครอบครัวจริง ๆ</p>
+        <footer><strong>Aira</strong><span>Live VJ · ในสังกัด 2 ปี</span></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Latest articles ===== -->
+{% set latest = collections.posts | limit(3) %}
+{% if latest.length %}
+<section class="latest" id="latest" aria-labelledby="latestTitle">
+  <div class="container">
+    <div class="section-head section-head--row">
+      <h2 id="latestTitle" class="section-title">
+        <span class="display-serif">from the</span>
+        <span class="display-sans">journal</span>
+      </h2>
+      <a class="latest__all" href="/blog/">ดูบทความทั้งหมด →</a>
+    </div>
+    <div class="card-grid">
+      {% for p in latest %}
+      <a class="pcard" href="{{ p.url }}">
+        {% if p.data.cover %}<div class="pcard__media"><img src="{{ p.data.cover }}" alt="" width="600" height="315" loading="lazy"></div>{% endif %}
+        <div class="pcard__body">
+          {% if p.data.category %}<span class="pcard__cat">{{ p.data.category }}</span>{% endif %}
+          <h3 class="pcard__title">{{ p.data.title }}</h3>
+          <p class="pcard__excerpt">{{ p.data.description }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq" aria-labelledby="faqTitle">
+  <div class="container faq__inner">
+    <div class="section-head">
+      <h2 id="faqTitle" class="section-title">
+        <span class="display-serif">frequently</span>
+        <span class="display-sans">asked</span>
+      </h2>
+      <p class="section-lead">คำถามที่น้อง ๆ มักถามก่อนสมัคร — ถ้ายังสงสัยอะไร ทักไลน์ถามพี่ ๆ ได้เลย</p>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item"><summary><span>อายุเท่าไหร่ถึงจะสมัครออดิชั่นได้?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__answer">ผู้สมัครต้องมีอายุ <strong>18 ปีบริบูรณ์ขึ้นไป</strong> ไม่จำกัดอายุสูงสุด ขอแค่มีใจรักและพร้อมพัฒนาตัวเอง เราเปิดกว้างสำหรับทุกคน</div></details>
+      <details class="faq__item"><summary><span>ต้องมีประสบการณ์ในวงการไหม?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__answer">ไม่จำเป็น พี่ ๆ ทีมงานจะดูแลและสอนตั้งแต่ขั้นพื้นฐาน ไม่ว่าจะตั้งค่ายไลฟ์ พูดหน้ากล้อง หรือเทคนิคเล็ก ๆ น้อย ๆ ระหว่างไลฟ์</div></details>
+      <details class="faq__item"><summary><span>การสมัครมีค่าใช้จ่ายหรือไม่?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__answer"><strong>ฟรี 100%</strong> ไม่มีค่าใช้จ่ายในการสมัครหรือเทรนนิ่งใด ๆ ทั้งสิ้น เราคัดเลือกและดูแล Live VJ ด้วยความเชื่อมั่นในศักยภาพ</div></details>
+      <details class="faq__item"><summary><span>ทราบผลภายในกี่วัน?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__answer">ทีมงานจะตรวจสอบและแจ้งผลผ่าน <strong>LINE</strong> ภายใน 1-3 วันทำการ (ไม่รวมเสาร์-อาทิตย์และวันหยุดนักขัตฤกษ์)</div></details>
+      <details class="faq__item"><summary><span>ใช้รูป AI หรือฟิลเตอร์สมัครได้ไหม?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__answer">ไม่ได้ ต้องใช้รูปและคลิปวิดีโอ<strong>จริงเท่านั้น</strong> ไม่ใช้ฟิลเตอร์และ AI สร้างภาพ เพื่อให้ทีมงานเห็นตัวตนจริงของคุณ</div></details>
+      <details class="faq__item"><summary><span>สมัครแล้วต้องไลฟ์บ่อยแค่ไหน?</span><span class="faq__plus" aria-hidden="true"></span></summary><div class="faq__answer">เริ่มต้นที่ <strong>10 ชั่วโมง/เดือน</strong>ตามเงื่อนไขและนโยบายของแพลตฟอร์มเลย — น้องเลือกเวลาเองได้ทั้งกลางวันกลางคืน พี่ ๆ จะช่วยวางตารางให้<strong>เข้ากับไลฟ์สไตล์ของน้อง</strong> เน้นสม่ำเสมอแบบสบาย ๆ ไม่กดดัน ค่อย ๆ ขยับขึ้นไปพร้อมแฟน ๆ ที่ตามดูประจำ</div></details>
+    </div>
+    <p class="faq__more">ยังมีคำถามอีก? <a href="/faq/">ดูคำถามที่พบบ่อยทั้งหมด</a></p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="contact" aria-labelledby="ctaTitle">
+  <div class="container cta__inner">
+    <div class="cta__deco" aria-hidden="true"><svg viewBox="0 0 60 60" width="60" height="60" fill="#fff"><path d="M30 5l5 15 15 5-15 5-5 15-5-15-15-5 15-5z"/></svg></div>
+    <h2 id="ctaTitle" class="cta__title">
+      <span class="display-serif">ready to</span>
+      <span class="display-sans">go live?</span>
+    </h2>
+    <p class="cta__lead">มาเป็น Live VJ กับเราวันนี้เลย แค่ 5 นาทีก็สมัครเสร็จ ไม่มีค่าใช้จ่าย ไม่ต้องเก่งมาก่อน พี่ ๆ ทีมงานรอต้อนรับน้องอยู่</p>
+    <div class="cta__actions">
+      <a href="{{ site.line.url }}" target="_blank" rel="noopener" class="btn btn--white btn--lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.628-.63.628H16.98a.631.631 0 0 1-.629-.628V9.23c0-.346.282-.629.633-.629h2.385c.346 0 .627.283.627.629 0 .349-.281.63-.63.63H17.61v1.125zm-3.855 3.016a.626.626 0 0 1-.631.627.6.6 0 0 1-.51-.252l-2.443-3.317v2.94a.629.629 0 0 1-1.259 0V9.23c0-.27.173-.51.428-.598.063-.024.13-.034.198-.034.197 0 .378.105.494.255l2.466 3.327V9.23c0-.346.281-.629.63-.629.346 0 .627.283.627.629zm-5.741 0a.629.629 0 0 1-.63.627.626.626 0 0 1-.628-.627V9.23c0-.346.282-.629.63-.629.345 0 .628.283.628.629zm-2.466.627H4.917a.625.625 0 0 1-.626-.627V9.23c0-.346.282-.629.63-.629.348 0 .63.283.63.629v3.016h1.752c.349 0 .63.283.63.63 0 .344-.281.628-.63.628M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINE {{ site.line.handle }}
+      </a>
+      <a href="{{ site.ig.url }}" target="_blank" rel="noopener" class="btn btn--outline-white btn--lg">ดู IG ก่อน</a>
+    </div>
+  </div>
+</section>
