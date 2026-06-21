@@ -11,11 +11,11 @@
 /about             /#about     301
 /talent            /vj/        301
 
-# Social shortcuts
-/ig                https://www.instagram.com/tomatoagency.th/  302
-/instagram         https://www.instagram.com/tomatoagency.th/  302
-/line              https://lin.ee/WSxsQuG                       302
-/lineoa            https://lin.ee/WSxsQuG                       302
+# Social shortcuts → routed through go.tomato.in.th shortlinks (tracking; all outbound links go via shortlink)
+/ig                https://go.tomato.in.th/tomato-ig    302
+/instagram         https://go.tomato.in.th/tomato-ig    302
+/line              https://go.tomato.in.th/tomato-line  302
+/lineoa            https://go.tomato.in.th/tomato-line  302
 
 # www -> apex (apex is canonical)
 https://www.tomato.in.th/*    https://tomato.in.th/:splat  301!

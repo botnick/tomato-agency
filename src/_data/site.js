@@ -5,13 +5,16 @@ export default {
   url: "https://tomato.in.th",
   tagline: "ค่าย Live VJ ของไทย สมัครฟรี ทำที่บ้านได้",
   description:
-    "Tomato Agency — ค่าย Live VJ ของไทย รับสมัครวีเจไลฟ์สด สมัครฟรี ไม่จำกัดเพศ อายุ 18 ขึ้นไป ทำที่บ้านได้ จัดเวลาเอง ทีมงานดูแลใกล้ชิด ไม่ Toxic",
+    "Tomato Agency — ค่าย Live VJ ของไทย รับสมัครวีเจไลฟ์สด สมัครฟรี ไม่จำกัดเพศ อายุ 18 ขึ้นไป ทำที่บ้านได้ จัดเวลาเอง ทีมงานดูแลใกล้ชิด อบอุ่นเป็นกันเอง",
   lang: "th",
   locale: "th_TH",
   founded: "2024",
 
-  line: { handle: "@tomatoagency", url: "https://lin.ee/WSxsQuG" },
-  ig: { handle: "@tomatoagency.th", url: "https://www.instagram.com/tomatoagency.th/" },
+  // `url` = the real profile (used ONLY for JSON-LD sameAs / structured data).
+  // `short` = the go.tomato.in.th shortlink used for ALL clickable outbound links (tracking).
+  // Rule: every link leaving the site must go through a shortlink first.
+  line: { handle: "@tomatoagency", url: "https://lin.ee/WSxsQuG", short: "https://go.tomato.in.th/tomato-line" },
+  ig: { handle: "@tomatoagency.th", url: "https://www.instagram.com/tomatoagency.th/", short: "https://go.tomato.in.th/tomato-ig" },
   email: "hello@tomato.in.th",
 
   ogImageDefault: "/assets/img/og-image.png",

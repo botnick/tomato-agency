@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>IDOL+ OG cover</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=IBM+Plex+Sans+Thai:wght@500;600;700;800&display=swap">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--red:#C41C23;--red-deep:#8E1218;--pink:#FFB5CD;--pink-soft:#FFE5EE;--cream:#FFF9F7}
+  body{background:#333}
+  .cover{
+    width:1200px;height:630px;position:relative;overflow:hidden;
+    font-family:'IBM Plex Sans Thai',sans-serif;
+    background:
+      radial-gradient(85% 120% at 18% 28%, rgba(255,181,205,.5) 0%, transparent 52%),
+      linear-gradient(135deg,#C41C23 0%,#8E1218 100%);
+    display:flex;align-items:center;gap:30px;padding:0 76px;
+  }
+  .cover::after{content:"";position:absolute;inset:22px;border:2px solid rgba(255,255,255,.25);border-radius:28px;pointer-events:none}
+
+  /* hero logo (left) */
+  .hero{width:400px;flex:none;display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+  .logo-glow{position:relative;width:372px;height:372px;display:flex;align-items:center;justify-content:center}
+  .logo-glow::before{content:"";position:absolute;inset:-26px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.6) 0%,transparent 70%)}
+  .logo-glow img{width:372px;height:372px;border-radius:68px;box-shadow:0 26px 64px rgba(0,0,0,.34);position:relative;z-index:1;border:6px solid rgba(255,255,255,.9)}
+  .spark{position:absolute;color:#FFE9F0;z-index:3;filter:drop-shadow(0 2px 6px rgba(0,0,0,.15))}
+  .s1{top:34px;left:18px;width:48px;height:48px;opacity:.95}
+  .s2{bottom:70px;left:6px;width:30px;height:30px;opacity:.85}
+  .s3{top:120px;right:18px;width:34px;height:34px;opacity:.9}
+
+  /* text (right) */
+  .right{flex:1;position:relative;z-index:3;color:#fff;padding:60px 0}
+  .chip{display:inline-block;font-size:26px;font-weight:700;background:rgba(255,255,255,.2);color:#fff;padding:10px 26px;border-radius:999px;margin-bottom:26px}
+  .head{font-weight:800;font-size:82px;line-height:1.12;letter-spacing:-.5px}
+  .head em{font-style:normal;color:#FFD9E2}
+  .pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .pill{display:flex;align-items:center;gap:9px;font-size:25px;font-weight:600;color:#fff;background:rgba(255,255,255,.15);padding:10px 20px;border-radius:14px}
+  .pill svg{width:24px;height:24px}
+
+  .footer{position:absolute;left:76px;right:76px;bottom:50px;display:flex;align-items:center;gap:16px;z-index:4}
+  .footer img{width:58px;height:58px;border-radius:50%;background:#fff;padding:7px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+  .fname{font-family:'DM Serif Display',serif;font-style:italic;font-size:34px;color:#fff}
+  .fdom{margin-left:auto;font-size:23px;font-weight:600;color:rgba(255,255,255,.92)}
+</style>
+</head>
+<body>
+<div class="cover" id="cover-idolplus">
+  <div class="hero">
+    <div class="logo-glow">
+      <img src="file:///home/k1/Desktop/botnixk/tomato-agency/assets/img/idol-plus-logo.webp" alt="">
+    </div>
+    <svg class="spark s1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.4L21 10l-6.8 1.6L12 18l-2.2-6.4L3 10l6.8-1.6z"/></svg>
+    <svg class="spark s2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.4L21 10l-6.8 1.6L12 18l-2.2-6.4L3 10l6.8-1.6z"/></svg>
+    <svg class="spark s3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.4L21 10l-6.8 1.6L12 18l-2.2-6.4L3 10l6.8-1.6z"/></svg>
+  </div>
+  <div class="right">
+    <span class="chip">แอพไลฟ์สด</span>
+    <div class="head">ไลฟ์สด<em>น้องใหม่</em><br>มาแรงตอนนี้</div>
+    <div class="pills">
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13"/></svg>ไลฟ์ + เกม + ปาร์ตี้</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 15V3M8 11l4 4 4-4M5 21h14"/></svg>โหลดฟรี iOS / Android</span>
+    </div>
+  </div>
+  <div class="footer">
+    <img src="file:///home/k1/Desktop/botnixk/tomato-agency/assets/img/logo.png" alt="">
+    <span class="fname">tomato agency</span>
+    <span class="fdom">tomato.in.th</span>
+  </div>
+</div>
+</body>
+</html>

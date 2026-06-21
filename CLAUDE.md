@@ -60,8 +60,12 @@ you change cached files (and update its `CORE_ASSETS` list).
 
 The user pushed back on every one of these. Don't undo them:
 
-- **Live VJ is the core service.** Don't reposition the agency as anything else. **IDOL+** is allowed but only
-  as the name of a *growth program for Live VJs* (`/idol-plus/`), NOT as repositioning into an idol/talent agency.
+- **Live VJ is the core service.** Don't reposition the agency as anything else. **IDOL+** is the
+  **live-streaming app** the agency currently promotes as its main platform (`/idol-plus/`) — full name
+  *IDOL+ Global & Celeb Live* (by YOME Technology). Official IG `@idolplus.th`. App icon at
+  `assets/img/idol-plus-logo.webp` (official current logo from idolplus.tv); App Store id `6673904841`,
+  Google Play `com.xhxy.tala`. Promote it with the
+  logo + download buttons. It is an **app**, NOT a "growth program" (older copy wrongly called it that).
 - **No money in the pitch.** No income numbers, no follower counts, no "1,000 บาท/post", no guarantees. Don't
   invent stats. State platform-income honestly ("ไม่การันตีตัวเลข ขึ้นกับความสม่ำเสมอและนโยบายแพลตฟอร์ม").
 - **"พี่ ๆ ทีมงาน"** for the team (never "ทีมโค้ช"); **"น้อง ๆ"** for applicants. Friendly, a bit cute —
@@ -73,9 +77,21 @@ The user pushed back on every one of these. Don't undo them:
 
 ## Platform rule
 
-Main pages / brand / keywords mention **Bigo Live + livestreaming in general only** — no other live apps,
-and **no TikTok anywhere**. Blog articles MAY mention other apps when it genuinely helps SEO (comparisons,
-catching search terms).
+**IDOL+ is the live app we feature on brand/main pages** (logo + download buttons). Do NOT over-emphasize
+Bigo or any other specific live app on the homepage/brand — keep `/live-bigo/` and the other keyword pages
+purely for **Google SEO indexing** (they still rank, just not headlined). **Blog articles MAY mention any app
+including TikTok, Bigo, etc.** when it genuinely helps SEO (comparisons, catching search terms).
+
+## Outbound links — always via shortlink
+
+**Every link that leaves the site must go through a `go.tomato.in.th` shortlink first** (click tracking).
+Don't hardcode raw external URLs in clickable `href`s. Current shortlinks:
+`/tomato-line` (LINE), `/tomato-ig` (IG), `/idolplus` (App Store iOS), `/idolplus-android` (Google Play),
+`/idolplus-ig` (IDOL+ IG), `/idolplus-web` (idolplus.tv). In `src/_data/site.js`, `line.short`/`ig.short`
+hold the shortlinks (use these in links); `line.url`/`ig.url` keep the REAL profile URLs and are used ONLY
+for JSON-LD `sameAs`/`contactPoint` (do NOT shorten structured-data URLs). `_redirects` social shortcuts
+also route through the shortlinks. New external link → create a shortlink first via the shortlink service
+(`POST https://go.tomato.in.th/api/v1/links`, Bearer key) then reference it.
 
 ## Trust / E-E-A-T
 

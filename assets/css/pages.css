@@ -302,10 +302,73 @@
 .faq__more { text-align: center; margin-top: 22px; font-family: var(--font-thai); font-size: var(--fz-sm); color: var(--ink-soft); }
 .faq__more a { color: var(--red); text-decoration: none; font-weight: 600; }
 
+/* ---- App store download buttons ---- */
+.storebtns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 4px 0 22px; }
+.storebtn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #111; color: #fff;
+  border-radius: 14px; padding: 9px 18px 9px 15px;
+  text-decoration: none; line-height: 1;
+  border: 1px solid #111;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.storebtn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: #000; }
+.storebtn svg { flex: none; }
+.storebtn__txt { display: flex; flex-direction: column; gap: 2px; font-family: var(--font-sans); text-align: left; }
+.storebtn__txt small { font-size: 10px; opacity: .82; letter-spacing: .02em; }
+.storebtn__txt strong { font-size: var(--fz-md); font-weight: 700; letter-spacing: -.01em; }
+
+/* ---- Featured app band (home) ---- */
+.appfeat {
+  padding: clamp(28px, 5vw, 56px) 0;
+  background:
+    radial-gradient(120% 130% at 100% 0%, var(--pink-soft) 0%, transparent 55%),
+    var(--pink-cream);
+}
+.appfeat__inner {
+  display: flex; align-items: center; gap: clamp(20px, 4vw, 44px);
+  background: var(--white);
+  border: 1px solid var(--ink-line);
+  border-radius: var(--r-lg, 24px);
+  padding: clamp(22px, 4vw, 38px);
+  box-shadow: var(--shadow-sm);
+}
+.appfeat__logo img {
+  width: clamp(96px, 14vw, 128px); height: auto;
+  border-radius: 26px; display: block;
+  box-shadow: var(--shadow-md);
+}
+.appfeat__body { flex: 1; min-width: 0; }
+.appfeat__kicker {
+  display: inline-block; font-family: var(--font-thai);
+  font-size: var(--fz-xs); font-weight: 700; letter-spacing: .04em;
+  color: var(--red); background: var(--pink-soft);
+  border-radius: var(--r-pill); padding: 5px 13px; margin-bottom: 12px;
+}
+.appfeat__title { font-family: var(--font-thai); font-weight: 700; font-size: var(--fz-2xl); color: var(--ink); margin: 0 0 10px; line-height: 1.2; }
+.appfeat__brand { color: var(--red); }
+.appfeat__lead { font-family: var(--font-thai); font-size: var(--fz-md); line-height: 1.7; color: var(--ink-mid); max-width: 56ch; margin: 0 0 18px; }
+.appfeat__more { align-self: center; }
+
+/* ---- App landing hero (idol-plus) ---- */
+.appland__hero { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); max-width: 960px; }
+.appland__logo img { width: clamp(104px, 16vw, 132px); height: auto; border-radius: 28px; display: block; box-shadow: var(--shadow-md); }
+.appland__head { flex: 1; min-width: 0; }
+.appland__head .lp-title { margin-bottom: 10px; }
+
 /* ---- Mobile tuning ---- */
 @media (max-width: 640px) {
   .lp-hero__cta { flex-direction: column; align-items: stretch; }
   .lp-hero__cta .btn { justify-content: center; }
   .section-head--row { align-items: flex-start; }
   .post__author { flex-direction: column; }
+  .appfeat__inner { flex-direction: column; text-align: center; }
+  .appfeat__kicker { margin-inline: auto; }
+  .appfeat__lead { margin-inline: auto; }
+  .appfeat__logo img { margin-inline: auto; }
+  .storebtns { justify-content: center; }
+  .appland__hero { flex-direction: column; text-align: center; }
+  .appland__logo img { margin-inline: auto; }
+  .appland__head .lp-kicker { margin-inline: auto; }
+  .appland__head .storebtns { justify-content: center; }
 }
