@@ -23,4 +23,3 @@ Allow: /
 
 # Sitemap
 Sitemap: https://tomato.in.th/sitemap.xml
-Host: https://tomato.in.th
