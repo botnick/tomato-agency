@@ -21,11 +21,11 @@ export default {
   logo: "/assets/img/logo.png",
 
   // Primary nav — shown in header on every page (keeps site hierarchy clear for sitelinks)
+  // งานตอบแชท + ไลฟ์สด Bigo are intentionally NOT in nav — kept as SEO-only pages
+  // (still in sitemap + cross-linked from related sections), not featured in navigation.
   nav: [
     { label: "รับสมัครวีเจ", url: "/vj/" },
     { label: "สังกัด", url: "/sangkat/" },
-    { label: "งานตอบแชท", url: "/ngan-tob-chat/" },
-    { label: "ไลฟ์สด", url: "/live-bigo/" },
     { label: "งานออนไลน์", url: "/ngan-online/" },
     { label: "IDOL+", url: "/idol-plus/" },
     { label: "บทความ", url: "/blog/" },
@@ -38,8 +38,6 @@ export default {
       links: [
         { label: "รับสมัครวีเจ", url: "/vj/" },
         { label: "สังกัดวีเจ", url: "/sangkat/" },
-        { label: "งานตอบแชท", url: "/ngan-tob-chat/" },
-        { label: "ไลฟ์สด Bigo", url: "/live-bigo/" },
         { label: "งานออนไลน์", url: "/ngan-online/" },
         { label: "IDOL+", url: "/idol-plus/" },
       ],

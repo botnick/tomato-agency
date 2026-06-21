@@ -2,12 +2,13 @@
    tomato agency — Service Worker
    Strategy:
      - precache the app shell on install
-     - stale-while-revalidate for same-origin GET
-     - network-only for navigation if no SW cache
-     - offline fallback to root
+     - network-first for HTML + CSS/JS (so a deploy serves fresh styles/scripts
+       immediately — stale CSS after deploy was breaking layout)
+     - stale-while-revalidate for other assets (images, fonts)
+     - offline fallback to cache, then root
    ===================================================== */
 
-const VERSION    = 'tomato-v2.1.0';
+const VERSION    = 'tomato-v2.1.1';
 const CORE_CACHE = `${VERSION}-core`;
 const RUN_CACHE  = `${VERSION}-run`;
 
@@ -49,6 +50,7 @@ self.addEventListener('activate', (event) => {
 
 const sameOrigin = (url) => new URL(url, self.location.origin).origin === self.location.origin;
 const isHTML = (req) => req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+const isStyleOrScript = (req) => /\.(css|js)$/i.test(new URL(req.url).pathname);
 
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(RUN_CACHE);
@@ -88,7 +90,7 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   if (!sameOrigin(req.url)) return; // let third-party (fonts.googleapis) hit the network freely
 
-  if (isHTML(req)) {
+  if (isHTML(req) || isStyleOrScript(req)) {
     event.respondWith(networkFirst(req));
   } else {
     event.respondWith(staleWhileRevalidate(req));
