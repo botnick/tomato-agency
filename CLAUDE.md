@@ -105,6 +105,12 @@ Covers are **original branded graphics** (no AI gen, no stock/stolen images) —
 `scripts/og-gallery.html` (brand gradient + hand-drawn SVG motif + existing logo) and screenshotted to PNG.
 Build (`npm run build`) must stay pure Eleventy — covers are pre-generated & committed, NOT made during CF build.
 
+**After a new post deploys to live, ping IndexNow** so Bing/Yandex/DuckDuckGo/Naver/Seznam recrawl instantly:
+`npm run indexnow -- https://tomato.in.th/blog/<slug>/ / /blog/` (or `node scripts/indexnow-ping.mjs ...`).
+Ownership key is the `{key}.txt` at repo root (passthrough → site root); the script auto-discovers it. Run
+ONLY after the URL is live (IndexNow 403s if the key file/page isn't reachable yet). Google has no ping API —
+rely on Search Console + the sitemap's `<lastmod>` for it.
+
 ## CF Pages stuff
 
 `_headers` is short on purpose (HSTS-ish: CORP cross-origin + `Access-Control-Allow-Origin: *` so social

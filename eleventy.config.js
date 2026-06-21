@@ -10,6 +10,8 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("_redirects");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy(".well-known");
+  // IndexNow ownership key — must be reachable at the site root.
+  eleventyConfig.addPassthroughCopy("7fdafe29a493cab454be3a08a9524bf4.txt");
 
   // ---- Markdown: allow inline HTML in posts, autolink, smart typography
   eleventyConfig.setLibrary(

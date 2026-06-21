@@ -11,6 +11,7 @@
     "dev": "eleventy --serve --port 8088",
     "clean": "rm -rf dist",
     "humanize:check": "node scripts/humanize-check.mjs",
+    "indexnow": "node scripts/indexnow-ping.mjs",
     "deploy": "npm run build && npx wrangler pages deploy dist --project-name=tomato-agency"
   },
   "engines": {
