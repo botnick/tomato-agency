@@ -244,4 +244,68 @@
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
   }
+
+  /* ---------------- Blog image lightbox ----------------
+     Click an in-article image to view it enlarged. Scoped to the
+     current post's body only (each page shows its own images), and
+     built as a pure overlay — no history push, so the browser back
+     button never gets hijacked into "previous image". */
+  (() => {
+    const imgs = $$('.post__body img');
+    if (!imgs.length) return;
+
+    let box, imgEl, capEl, lastFocus;
+
+    const build = () => {
+      box = document.createElement('div');
+      box.className = 'lightbox';
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
+      box.setAttribute('aria-label', 'ดูรูปขนาดใหญ่');
+      box.innerHTML =
+        '<button class="lightbox__close" type="button" aria-label="ปิด">&times;</button>' +
+        '<figure class="lightbox__fig"><img class="lightbox__img" alt=""><figcaption class="lightbox__cap"></figcaption></figure>';
+      imgEl = $('.lightbox__img', box);
+      capEl = $('.lightbox__cap', box);
+      box.addEventListener('click', (e) => {
+        if (e.target === box || e.target.closest('.lightbox__close')) close();
+      });
+      document.body.appendChild(box);
+    };
+
+    const open = (src, alt, caption) => {
+      if (!box) build();
+      imgEl.src = src;
+      imgEl.alt = alt || '';
+      capEl.textContent = caption || alt || '';
+      capEl.style.display = capEl.textContent ? '' : 'none';
+      lastFocus = document.activeElement;
+      box.classList.add('is-open');
+      document.documentElement.style.overflow = 'hidden';
+      $('.lightbox__close', box).focus();
+    };
+
+    const close = () => {
+      if (!box) return;
+      box.classList.remove('is-open');
+      document.documentElement.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    imgs.forEach((img) => {
+      img.classList.add('is-zoomable');
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      const cap = img.closest('figure') ? (img.closest('figure').querySelector('figcaption') || {}).textContent : '';
+      const go = () => open(img.currentSrc || img.src, img.alt, cap);
+      img.addEventListener('click', go);
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && box && box.classList.contains('is-open')) close();
+    });
+  })();
 })();
