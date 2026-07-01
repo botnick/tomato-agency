@@ -116,6 +116,9 @@
 .prose li { margin-bottom: .5em; }
 .prose a { color: var(--red); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .prose a:hover { color: var(--red-deep); }
+/* buttons inside prose keep their own colors, not the link style */
+.prose a.btn { color: var(--fg); text-decoration: none; }
+.prose a.btn:hover { color: var(--fg); }
 .prose strong { color: var(--ink); font-weight: 700; }
 .prose blockquote {
   border-left: 4px solid var(--pink);
@@ -125,6 +128,38 @@
   font-style: italic;
 }
 .prose hr { border: 0; border-top: 1px dashed var(--ink-line); margin: 2em 0; }
+.prose figure { margin: 1.6em 0; }
+.prose figure img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid var(--ink-line);
+  box-shadow: 0 8px 26px rgba(0,0,0,.08);
+}
+.prose figcaption {
+  margin: .7em auto 0;
+  max-width: 520px;
+  text-align: center;
+  font-size: var(--fz-sm);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: var(--fz-sm);
+}
+.prose th, .prose td {
+  border: 1px solid var(--ink-line);
+  padding: .6em .8em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose thead th { background: var(--pink-soft, #FFE5EE); color: var(--ink); font-weight: 700; }
 .lp-related {
   margin-top: 2em;
   padding-top: 1.2em;
