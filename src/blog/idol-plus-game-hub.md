@@ -26,6 +26,11 @@ faq:
 
 ถ้าเปิดหน้าโปรไฟล์ในแอพ จะเห็นเมนูฟีเจอร์หลายอันเรียงกัน เช่น Wallet, Skin, Avatar, Fan Club, Badges และก็มี **Game Hub** รวมอยู่ในนั้น นี่แหละคือประตูเข้าสู่โซนเกมของแอพ
 
+<figure>
+  <img src="/assets/img/blog/idol-plus/profile-wallet.webp" alt="หน้าโปรไฟล์ในแอพ IDOL+ แสดงเมนู Game Hub รวมกับ Wallet Skin Avatar และเหรียญ Candy Star Ruby" width="920" height="1531" loading="lazy">
+  <figcaption>เมนู Game Hub อยู่ในหน้าโปรไฟล์ของแอพ IDOL+ รวมกับ Wallet, CoinSellers และฟีเจอร์อื่น ๆ — ด้านบนเห็นเหรียญ Ruby ที่ใช้เล่นเกม</figcaption>
+</figure>
+
 ## Game Hub คืออะไร
 
 **Game Hub คือส่วนรวมเกมที่เล่นได้ภายในแอพ IDOL+** พูดง่าย ๆ คือมันเป็น "โซนเกม" ในแอพเดียวกับที่เราใช้ไลฟ์ ไม่ต้องออกไปโหลดเกมอื่น เล่นได้ในแอพเลย
@@ -52,6 +57,11 @@ faq:
 4. **เอา Ruby ไปเล่นเกม** ใน Game Hub ได้เลย
 
 พูดสั้น ๆ: **เติม Candy → แลกเป็น Ruby → เล่นเกม** นี่คือเส้นทางเดียวที่จะได้ Ruby มาใช้
+
+<figure>
+  <img src="/assets/img/blog/idol-plus/game-exchange.webp" alt="หน้าแลกเหรียญ Game Coins Exchange ในแอพ IDOL+ แลก Candy เป็น Ruby" width="920" height="1249" loading="lazy">
+  <figcaption>หน้าแลกเหรียญ (Game Coins Exchange) ในแอพ IDOL+ — เลือกจำนวนเพื่อแลก Candy เป็น Ruby (ตัวเลข/อัตราในภาพเป็นตัวอย่าง อาจเปลี่ยนได้ — ให้ยึดที่แอพแสดงจริงตอนแลก)</figcaption>
+</figure>
 
 ## อัตราแลกดูได้ที่ไหน
 

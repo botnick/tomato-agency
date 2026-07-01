@@ -22,6 +22,11 @@ faq:
 
 ## ในแอพ IDOL+ มีเหรียญกี่แบบ
 
+<figure>
+  <img src="/assets/img/blog/idol-plus/profile-wallet.webp" alt="หน้าโปรไฟล์ในแอพ IDOL+ แสดงเหรียญ 3 สกุล Candy Star Ruby พร้อมเมนู Wallet Game Hub CoinSellers" width="920" height="1531" loading="lazy">
+  <figcaption>หน้าโปรไฟล์ในแอพ IDOL+ — เห็นเหรียญ 3 สกุลแยกกัน: Candy, Star และ Ruby พร้อมเมนูฟีเจอร์อย่าง Wallet, Game Hub และ CoinSellers</figcaption>
+</figure>
+
 ถ้าเปิดหน้ากระเป๋าเงินในแอพ จะเห็นยอดแยกเป็นสามช่องชัดเจน แต่ละช่องคือคนละสกุล:
 
 - 🍬 **Candy** — เหรียญฝั่ง "คนดู" เอาไว้ส่งของขวัญให้ไอดอล
@@ -71,6 +76,11 @@ faq:
 - **Star** → ไม่ต้องเติม เพราะเป็นฝั่งที่ไอดอล "ได้รับ" ไม่ใช่ฝั่งที่เราซื้อ
 
 สรุปคือ **ตัวตั้งต้นที่เติมเข้าระบบได้จริงคือ Candy** ส่วน Ruby เป็นของที่แลกต่อจาก Candy อีกที ใครสับสนว่าจะกดเติมยังไงแบบละเอียด อ่านที่ [วิธีเติมเงิน IDOL+](/blog/idol-plus-topup-guide/) ได้เลย
+
+<figure>
+  <img src="/assets/img/blog/idol-plus/topup-recharge.webp" alt="หน้าเติม Candy ในแอพ IDOL+ แสดงแพ็กเกจเติมเงินเป็นขั้น ๆ" width="920" height="1497" loading="lazy">
+  <figcaption>หน้าเติม Candy ในแอพ IDOL+ เลือกแพ็กเกจได้เป็นขั้น ๆ (ตัวเลขราคา/จำนวนในภาพเป็นตัวอย่าง อาจเปลี่ยนได้ — ให้ยึดที่แอพแสดงจริงตอนเติม)</figcaption>
+</figure>
 
 ## แล้วเรื่องราคากับอัตราแลก ต้องดูที่ไหน
 
