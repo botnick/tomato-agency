@@ -61,6 +61,7 @@ const M = {
   balance:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3v18M5 21h14M3 8l4-3 4 3-4 8a4 4 0 0 1-4-8zM13 8l4-3 4 3-4 8a4 4 0 0 1-4-8z" stroke-linejoin="round"/></svg>`,
   spark:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>`,
   play:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z"/></svg>`,
+  chart:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>`,
 };
 const COVERS = [
   {id:'cover-vj', theme:'t-warm', chip:'งานหลัก', h:'รับสมัครวีเจ <em>Live VJ</em>', m:'mic'},
@@ -90,6 +91,7 @@ const COVERS = [
   {id:'live-gear-beginner-budget', theme:'t-warm', chip:'เริ่มต้นเป็นวีเจ', h:'อุปกรณ์ไลฟ์สด<br><em>มือใหม่</em> งบน้อย', m:'mic'},
   {id:'fan-club-loyal-fans', theme:'t-sky', chip:'เทคนิคไลฟ์', h:'เปลี่ยนขาจร<br>เป็น <em>แฟนประจำ</em>', m:'heart'},
   {id:'multi-guest-group-live', theme:'t-warm', chip:'เทคนิคไลฟ์', h:'ไลฟ์กลุ่ม<br><em>Multi-Guest</em><br>ชวนได้ถึง 8 คน', m:'people'},
+  {id:'live-analytics-guide', theme:'t-sky', chip:'เทคนิคไลฟ์', h:'อ่านสถิติไลฟ์<br>ให้รู้ว่า <em>ต้องปรับอะไร</em>', m:'chart'},
 ];
 document.getElementById('stage').innerHTML = COVERS.map(c=>`
   <div class="cover ${c.theme}" id="${c.id}">
