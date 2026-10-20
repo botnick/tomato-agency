@@ -1,4 +1,6 @@
 import markdownIt from "markdown-it";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 
 export default async function (eleventyConfig) {
   // ---- Passthrough: static assets + CF Pages config files stay at site root
@@ -44,6 +46,13 @@ export default async function (eleventyConfig) {
     } catch {
       return path;
     }
+  });
+  // Cache-bust: "/assets/css/style.css" | assetV → "/assets/css/style.css?v=<content hash>".
+  // Browsers keep CSS/JS for hours (CF default max-age), so a deploy that changes markup
+  // would otherwise pair new HTML with yesterday's stylesheet.
+  eleventyConfig.addFilter("assetV", (url) => {
+    const hash = createHash("md5").update(readFileSync("." + url)).digest("hex").slice(0, 8);
+    return `${url}?v=${hash}`;
   });
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("exclude", (arr, url) =>

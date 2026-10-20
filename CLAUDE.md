@@ -57,7 +57,8 @@ display titles stay serif italic (`.display-serif` + `.display-sans`); Thai head
 layer lives at the end of `assets/css/pages.css` ("Sweet refresh"); base rules are in `style.css`.
 Refine this look — don't replace it with a new themed world.
 
-Service worker is network-first for HTML, stale-while-revalidate for assets. **Bump `VERSION` in `sw.js`** when
+CSS/JS links in `base.njk` go through the `assetV` filter (adds `?v=<content hash>`) so a deploy never pairs new HTML
+with a browser-cached old stylesheet. Service worker is network-first for HTML, stale-while-revalidate for assets. **Bump `VERSION` in `sw.js`** when
 you change cached files (and update its `CORE_ASSETS` list).
 
 ## Content rules — read before editing copy

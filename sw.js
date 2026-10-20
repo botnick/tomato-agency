@@ -8,7 +8,7 @@
      - offline fallback to cache, then root
    ===================================================== */
 
-const VERSION    = 'tomato-v3.1.0';
+const VERSION    = 'tomato-v3.1.1';
 const CORE_CACHE = `${VERSION}-core`;
 const RUN_CACHE  = `${VERSION}-run`;
 
