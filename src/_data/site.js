@@ -27,7 +27,6 @@ export default {
     { label: "รับสมัครวีเจ", url: "/vj/" },
     { label: "สังกัด", url: "/sangkat/" },
     { label: "งานออนไลน์", url: "/ngan-online/" },
-    { label: "IDOL+", url: "/idol-plus/" },
     { label: "บทความ", url: "/blog/" },
   ],
 
@@ -39,7 +38,6 @@ export default {
         { label: "รับสมัครวีเจ", url: "/vj/" },
         { label: "สังกัดวีเจ", url: "/sangkat/" },
         { label: "งานออนไลน์", url: "/ngan-online/" },
-        { label: "IDOL+", url: "/idol-plus/" },
       ],
     },
     {

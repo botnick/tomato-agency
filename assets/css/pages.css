@@ -41,7 +41,7 @@
 }
 .lp-hero--accent {
   background:
-    radial-gradient(130% 130% at 80% -10%, rgba(196,28,35,.16) 0%, transparent 55%),
+    radial-gradient(130% 130% at 80% -10%, rgba(214,52,92,.16) 0%, transparent 55%),
     radial-gradient(120% 120% at 0% 0%, var(--pink-soft) 0%, transparent 55%),
     var(--cream);
 }
@@ -310,7 +310,7 @@
 .wtcard h3 { font-family: var(--font-thai); font-size: var(--fz-lg); color: var(--ink); margin: 0 0 7px; font-weight: 700; }
 .wtcard p { font-family: var(--font-thai); font-size: var(--fz-sm); color: var(--ink-soft); margin: 0; line-height: 1.6; }
 
-/* featured (IDOL+) */
+/* featured card */
 .wtcard--accent { background: linear-gradient(150deg, var(--red) 0%, var(--red-deep) 100%); border-color: transparent; box-shadow: var(--shadow-md); }
 .wtcard--accent::after { background: radial-gradient(circle, rgba(255,255,255,.2) 0%, transparent 70%); opacity: 1; }
 .wtcard--accent .wtcard__kicker { background: rgba(255,255,255,.22); color: #fff; }
@@ -442,73 +442,277 @@
 .faq__more { text-align: center; margin-top: 22px; font-family: var(--font-thai); font-size: var(--fz-sm); color: var(--ink-soft); }
 .faq__more a { color: var(--red); text-decoration: none; font-weight: 600; }
 
-/* ---- App store download buttons ---- */
-.storebtns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 4px 0 22px; }
-.storebtn {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: #111; color: #fff;
-  border-radius: 14px; padding: 9px 18px 9px 15px;
-  text-decoration: none; line-height: 1;
-  border: 1px solid #111;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.storebtn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: #000; }
-.storebtn svg { flex: none; }
-.storebtn__txt { display: flex; flex-direction: column; gap: 2px; font-family: var(--font-sans); text-align: left; }
-.storebtn__txt small { font-size: 10px; opacity: .82; letter-spacing: .02em; }
-.storebtn__txt strong { font-size: var(--fz-md); font-weight: 700; letter-spacing: -.01em; }
-
-/* ---- Featured app band (home) ---- */
-.appfeat {
-  padding: clamp(28px, 5vw, 56px) 0;
-  background:
-    radial-gradient(120% 130% at 100% 0%, var(--pink-soft) 0%, transparent 55%),
-    var(--pink-cream);
-}
-.appfeat__inner {
-  display: flex; align-items: center; gap: clamp(20px, 4vw, 44px);
-  background: var(--white);
-  border: 1px solid var(--ink-line);
-  border-radius: var(--r-lg, 24px);
-  padding: clamp(22px, 4vw, 38px);
-  box-shadow: var(--shadow-sm);
-}
-.appfeat__logo img {
-  width: clamp(96px, 14vw, 128px); height: auto;
-  border-radius: 26px; display: block;
-  box-shadow: var(--shadow-md);
-}
-.appfeat__body { flex: 1; min-width: 0; }
-.appfeat__kicker {
-  display: inline-block; font-family: var(--font-thai);
-  font-size: var(--fz-xs); font-weight: 700; letter-spacing: .04em;
-  color: var(--red); background: var(--pink-soft);
-  border-radius: var(--r-pill); padding: 5px 13px; margin-bottom: 12px;
-}
-.appfeat__title { font-family: var(--font-thai); font-weight: 700; font-size: var(--fz-2xl); color: var(--ink); margin: 0 0 10px; line-height: 1.2; }
-.appfeat__brand { color: var(--red); }
-.appfeat__lead { font-family: var(--font-thai); font-size: var(--fz-md); line-height: 1.7; color: var(--ink-mid); max-width: 56ch; margin: 0 0 18px; }
-.appfeat__more { align-self: center; }
-
-/* ---- App landing hero (idol-plus) ---- */
-.appland__hero { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); max-width: 960px; }
-.appland__logo img { width: clamp(104px, 16vw, 132px); height: auto; border-radius: 28px; display: block; box-shadow: var(--shadow-md); }
-.appland__head { flex: 1; min-width: 0; }
-.appland__head .lp-title { margin-bottom: 10px; }
-
 /* ---- Mobile tuning ---- */
 @media (max-width: 640px) {
   .lp-hero__cta { flex-direction: column; align-items: stretch; }
   .lp-hero__cta .btn { justify-content: center; }
   .section-head--row { align-items: flex-start; }
   .post__author { flex-direction: column; }
-  .appfeat__inner { flex-direction: column; text-align: center; }
-  .appfeat__kicker { margin-inline: auto; }
-  .appfeat__lead { margin-inline: auto; }
-  .appfeat__logo img { margin-inline: auto; }
-  .storebtns { justify-content: center; }
-  .appland__hero { flex-direction: column; text-align: center; }
-  .appland__logo img { margin-inline: auto; }
-  .appland__head .lp-kicker { margin-inline: auto; }
-  .appland__head .storebtns { justify-content: center; }
+}
+
+/* =====================================================
+   Sweet refresh (2026-10-21)
+   Same layout and sections as before, made softer and cuter. Reference the
+   owner picked: vibie.live (bold pink hero with a slanted edge, white and
+   sunny pills, clean white sections, pastel tiles, pink chips).
+   Lives last so it wins over the base rules above and in style.css.
+   ===================================================== */
+
+/* ---- Type: rounded Mitr for Thai headings + buttons (only 400/500 exist) ---- */
+.hero__title-th, .wtcard h3, .process__body h3, .pcard__title, .faq__item summary,
+.lp-title, .btn, .nav__link, .footer__nav h3 {
+  font-family: var(--font-head);
+  font-weight: 500;
+}
+.lp-title { font-weight: 500; letter-spacing: 0; }
+
+/* ---- Buttons ---- */
+.btn:active { transform: scale(.97); }
+.btn--white { box-shadow: 0 12px 26px -12px rgba(120, 10, 40, .55); }
+.btn--sun {
+  --bg: linear-gradient(180deg, var(--sun) 0%, var(--sun-deep) 100%);
+  --fg: #5A1F0E;
+  --bd: transparent;
+  box-shadow: 0 12px 26px -12px rgba(150, 60, 10, .55);
+}
+
+/* ---- Top notice bar: deep rose so it sits well above the pink hero ---- */
+.topbar { background: linear-gradient(90deg, #B51F48, #C92B53 50%, #B51F48); }
+
+/* ---- Header floats over the pink hero on home, turns white on scroll ---- */
+.home .header { margin-bottom: calc(-1 * var(--header-h)); }
+.brand__logo { transition: filter .3s var(--ease); }
+.home .header:not(.is-scrolled):not(:has(.nav.is-open))::before {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
+.home .header:not(.is-scrolled):not(:has(.nav.is-open)) .brand__logo { filter: brightness(0) invert(1); }
+.home .header:not(.is-scrolled):not(:has(.nav.is-open)) .nav-toggle span { background: #fff; }
+.home .header:not(.is-scrolled) .header__cta .btn--primary { --bg: #fff; --fg: var(--red); --bd: #fff; }
+@media (min-width: 1024px) {
+  .home .header:not(.is-scrolled) .nav__link { color: #fff; }
+  .home .header:not(.is-scrolled) .nav__link::after { background: #fff; }
+  .home .header:not(.is-scrolled) .nav__link:hover { background: rgba(255, 255, 255, .14); }
+}
+
+/* ---- Hero: rose block with a slanted bottom edge ---- */
+.home .hero {
+  padding: calc(var(--header-h) + clamp(24px, 5vw, 60px)) 0 clamp(110px, 12vw, 170px);
+  color: #fff;
+}
+.hero__bg {
+  background: linear-gradient(115deg, #B8234A 0%, #C92D55 50%, #E2557A 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
+}
+.hero__blob--1 { background: #FF9DB8; opacity: .55; }
+.hero__blob--2 { background: #FF8FA8; opacity: .22; }
+.hero__blob--3 { background: #fff; opacity: .1; }
+.hero__heart {
+  position: absolute;
+  fill: #fff;
+  opacity: .24;
+  animation: floatY 6s ease-in-out infinite;
+}
+.hero__heart--1 { width: 34px; top: 20%; left: 47%; }
+.hero__heart--2 { width: 22px; bottom: 30%; left: 4%;  opacity: .18; animation-delay: -2s; }
+.hero__heart--3 { width: 28px; top: 14%;  right: 7%;  opacity: .4;  animation-delay: -1s; }
+.hero__heart--4 { width: 18px; bottom: 34%; right: 44%; opacity: .32; animation-delay: -3s; }
+
+.home .hero__title .display-serif { color: #fff; }
+.home .hero__title .display-sans  { color: rgba(255, 255, 255, .92); }
+.home .hero__title-th { color: #fff; font-size: var(--fz-xl); margin-top: 14px; }
+.home .hero__lead { color: #fff; max-width: 38ch; font-weight: 500; }
+.home .hero__lead strong {
+  color: #fff;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 8px;
+  padding: 0 .3em;
+}
+.home .hero__lead-en { color: #fff; }
+.home .hero__bullets { gap: 10px; color: #fff; }
+.home .hero__bullets li {
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255, 255, 255, .36);
+  font-weight: 500;
+}
+.home .hero__bullets .dot { background: #fff; }
+
+.home .orbit__ring   { border-color: rgba(255, 255, 255, .5); }
+.home .orbit__ring--2 { border-color: rgba(255, 255, 255, .34); }
+.home .orbit__ring--3 { border-color: rgba(255, 255, 255, .22); }
+.home .orbit__center {
+  box-shadow: 0 34px 60px -18px rgba(110, 8, 38, .55), 0 0 0 12px rgba(255, 255, 255, .16);
+}
+.home .orbit__chip { border: 0; box-shadow: 0 14px 26px -10px rgba(110, 8, 38, .45); }
+
+/* marquee now sits under the slant, on white */
+.hero__marquee { margin-top: clamp(-8px, -1vw, 0px); border: 0; background: transparent; }
+.marquee__sep { color: var(--pink); }
+
+/* ---- Tighter section rhythm (the old page had big empty gaps) ---- */
+.about, .process, .talent, .voices, .latest, .faq { padding-block: clamp(56px, 7vw, 96px); }
+.worktypes { padding-block: clamp(24px, 4vw, 56px) clamp(56px, 7vw, 96px); }
+.section-head { margin-bottom: clamp(32px, 4vw, 52px); }
+
+/* ---- About: pastel tiles ---- */
+.about__card {
+  text-align: left;
+  border: 0;
+  border-radius: var(--r-xl);
+  background: var(--pink-soft);
+  padding: clamp(26px, 2.6vw, 34px) clamp(22px, 2.2vw, 30px);
+}
+.about__card:nth-child(2) { background: var(--peach); }
+.about__card:nth-child(3) { background: var(--blue-soft); }
+.about__card:nth-child(4) { background: var(--butter); }
+.about__card::before { display: none; }
+.about__card:hover { box-shadow: 0 22px 40px -24px rgba(168, 23, 63, .45); }
+.about__icon {
+  margin: 0 0 18px;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 10px 20px -12px rgba(168, 23, 63, .45);
+}
+.about__card h3 { color: var(--red-deep); }
+
+/* ---- Work types: bento, VJ is the big rose tile ---- */
+.wtcard {
+  align-items: flex-start;
+  text-align: left;
+  border: 0;
+  border-radius: var(--r-xl);
+  padding: clamp(22px, 2.4vw, 30px);
+  background: var(--pink-cream);
+  box-shadow: inset 0 0 0 1px var(--ink-line);
+}
+.worktypes__grid > :nth-child(3) { background: var(--blue-soft); box-shadow: none; }
+.worktypes__grid > :nth-child(4) { background: var(--lilac); box-shadow: none; }
+.wtcard__icon { border-radius: 50%; background: #fff; box-shadow: 0 10px 20px -12px rgba(168, 23, 63, .45); }
+.wtcard__kicker { background: #fff; color: var(--red-deep); }
+.wtcard--accent {
+  background: linear-gradient(150deg, #E04A70 0%, #D6345C 45%, #B51F48 100%);
+  box-shadow: 0 26px 50px -26px rgba(168, 23, 63, .8);
+}
+.wtcard--accent .wtcard__kicker { background: rgba(255, 255, 255, .22); color: #fff; }
+.wtcard--accent .wtcard__icon { background: rgba(255, 255, 255, .2); box-shadow: none; }
+.wtcard--accent p { color: #fff; }
+@media (min-width: 901px) {
+  .worktypes__grid {
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 20px;
+  }
+  .wtcard--accent { grid-row: span 2; justify-content: flex-end; padding: 36px; }
+  .wtcard--accent .wtcard__icon { width: 76px; height: 76px; margin-bottom: auto; }
+  .wtcard--accent .wtcard__icon svg { width: 36px; height: 36px; }
+  .wtcard--accent h3 { font-size: var(--fz-2xl); }
+  .wtcard--accent p { font-size: var(--fz-md); }
+  .worktypes__grid > :nth-child(2) { grid-column: span 2; }
+}
+
+/* ---- Manifesto: rose band with slanted edges ---- */
+.manifesto {
+  background: linear-gradient(115deg, #B8234A 0%, #C92D55 60%, #D94470 100%);
+  clip-path: polygon(0 7%, 100% 0, 100% 93%, 0 100%);
+  padding-block: clamp(84px, 10vw, 132px);
+}
+.manifesto__caption { color: #fff; }
+.manifesto__pills li { background: rgba(255, 255, 255, .16); border-color: rgba(255, 255, 255, .32); }
+
+/* ---- Process ---- */
+.process__step {
+  background: #fff;
+  box-shadow: 0 18px 36px -26px rgba(168, 23, 63, .45);
+}
+.process__num::after { display: none; }
+.process__num {
+  width: 64px; height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  font-size: 30px;
+}
+
+/* ---- Talent ---- */
+.join__card {
+  text-align: left;
+  border-radius: var(--r-xl);
+  box-shadow: 0 18px 36px -28px rgba(168, 23, 63, .45);
+}
+.join__icon { margin-inline: 0; }
+.join__card:nth-child(2) .join__icon { background: var(--peach); }
+.join__card:nth-child(3) .join__icon { background: var(--blue-soft); }
+.join__card:nth-child(4) .join__icon { background: var(--butter); }
+
+/* ---- Voices ---- */
+.voice { background: var(--pink-cream); border-color: transparent; border-radius: var(--r-xl); }
+.voice:nth-child(2) { background: var(--peach); }
+.voice:nth-child(3) { background: var(--blue-soft); }
+
+/* ---- Journal head: title left, "see all" right, like vibie's rows ---- */
+.section-head--row { flex-direction: row; text-align: left; align-items: flex-end; }
+.section-head--row::before { display: none; }
+.section-head--row .section-title { justify-content: flex-start; }
+.latest { padding-top: clamp(32px, 4vw, 56px); }
+
+/* ---- Post cards: vibie-style pink chips ---- */
+.pcard { border-radius: var(--r-lg); box-shadow: 0 18px 36px -30px rgba(168, 23, 63, .5); }
+.pcard__cat {
+  align-self: flex-start;
+  background: var(--pink-soft);
+  color: var(--red-deep);
+  font-size: var(--fz-xs);
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 3px 10px;
+}
+.pcard__excerpt { -webkit-line-clamp: 2; }
+
+/* ---- FAQ ---- */
+.faq__item { border-radius: var(--r-md); }
+
+/* ---- CTA: rose block, slanted top ---- */
+.cta {
+  background: linear-gradient(115deg, #B8234A 0%, #C92D55 60%, #D94470 100%);
+  clip-path: polygon(0 9%, 100% 0, 100% 100%, 0 100%);
+  padding-top: clamp(96px, 11vw, 140px);
+}
+.cta__lead { color: #fff; }
+
+/* ---- Footer: light blush instead of near-black ---- */
+.footer { background: var(--pink-cream); color: var(--ink-mid); border-top: 1px solid var(--ink-line); }
+.footer__brand .brand__logo { filter: none; }
+.social a { background: #fff; color: var(--red); box-shadow: 0 8px 18px -12px rgba(168, 23, 63, .5); }
+.social a:hover { background: var(--red); color: #fff; }
+.footer__nav h3 { color: var(--ink); border-bottom-color: var(--ink-line); }
+.footer__nav ul a:hover { color: var(--red); }
+.footer__bottom { border-top-color: var(--ink-line); color: var(--ink-soft); }
+
+/* ---- Readability (owner 2026-10-21: "สีอ่านยากไปนิด") — darker, larger card text ---- */
+.section-lead { color: var(--ink-mid); }
+.about__card p, .process__body p, .join__card p, .wtcard p, .pcard__excerpt, .faq__answer {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+}
+.wtcard--accent p { color: #fff; }
+.wtcard__kicker, .pcard__cat { font-size: 13px; font-weight: 600; }
+.voice span { font-size: 13px; }
+.manifesto__caption, .cta__lead { font-weight: 500; }
+
+@media (max-width: 640px) {
+  .hero__bg { clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%); }
+  .manifesto { clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%); }
+  .cta { clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%); }
+  .hero__heart--1, .hero__heart--4 { display: none; }
+  /* on a phone the big blob sits right behind the text — keep the rose dark there */
+  .hero__blob--1 { opacity: .18; top: auto; bottom: 10%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__heart { animation: none; }
 }

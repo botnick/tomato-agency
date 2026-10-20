@@ -38,20 +38,24 @@ Or `npm run deploy` (build + `wrangler pages deploy dist`).
   (Organization, WebSite+SearchAction, WebPage, BreadcrumbList). Layouts chain into it via `{{ content }}`.
 - `src/_includes/layouts/page.njk` — generic page (breadcrumbs + content + CTA band).
 - `src/_includes/layouts/post.njk` — blog article (cover, meta, author box, related, BlogPosting + FAQ schema).
-- `src/index.njk` — homepage (splash + hero + sections + worktypes links + latest posts + FAQ + CTA).
+- `src/index.njk` — homepage (pink hero with slanted edge + orbit logo, marquee, about tiles, work-type bento,
+  manifesto band, 4 steps, perfect-for-you, voices, latest posts, FAQ, CTA). **No splash/preloader** — the owner
+  removed it ("รก"); don't add one back.
 - `src/pages/*.njk` — keyword landing pages: `vj`, `sangkat`, `ngan-tob-chat`, `live-bigo`, `ngan-online`,
-  `idol-plus`, plus `faq`, `contact`, `privacy`. Each has its own permalink + FAQ JSON-LD.
+  plus `faq`, `contact`, `privacy`. Each has its own permalink + FAQ JSON-LD.
 - `src/blog/*.md` — posts. Shared front matter in `src/blog/blog.11tydata.js` (layout, `tags: post`,
   permalink, computed readingTime/wordCount/breadcrumbs/author/ogImage).
 - `src/blog.njk` `/blog/`, `src/blog-category.njk` `/blog/category/<slug>/`, `src/sitemap.njk`,
   `src/feed.njk` (RSS), `src/404.njk`.
 
-Brand colors and fonts are CSS variables at the top of `assets/css/style.css` — `--red`, `--pink`, `--blue`,
-`--cream`, `--font-serif`, `--font-display`, `--font-thai`. New component styles live in `assets/css/pages.css`.
-
-Section titles are bilingual: `<span class="display-serif">italic english</span>` +
-`<span class="display-sans">lowercase english</span>`. **Don't put Thai inside `.display-serif`** — italic
-serif fonts butcher Thai glyphs. Thai goes in `.section-lead`, `.lp-title`, prose, or body text (IBM Plex Sans Thai).
+**Look = the original light, cute, feminine site, "sweet refresh" (2026-10-21, see `DESIGN.md`).** The owner rejected
+a dark concept redesign as "ai slop" and asked to keep the original layout, make it prettier, more feminine and
+cute, in the spirit of **vibie.live** (bold pink hero with a slanted edge, white + sunny pills, pastel tiles, pink
+chips, clean light sections). UI accent `--red` is now rose `#D6345C`; the logo keeps its own tomato red. English
+display titles stay serif italic (`.display-serif` + `.display-sans`); Thai headings + buttons use **Mitr** 500
+(`--font-head`, only 400/500 are loaded — don't ask for 600/700), body is IBM Plex Sans Thai Looped. The refresh
+layer lives at the end of `assets/css/pages.css` ("Sweet refresh"); base rules are in `style.css`.
+Refine this look — don't replace it with a new themed world.
 
 Service worker is network-first for HTML, stale-while-revalidate for assets. **Bump `VERSION` in `sw.js`** when
 you change cached files (and update its `CORE_ASSETS` list).
@@ -60,12 +64,9 @@ you change cached files (and update its `CORE_ASSETS` list).
 
 The user pushed back on every one of these. Don't undo them:
 
-- **Live VJ is the core service.** Don't reposition the agency as anything else. **IDOL+** is the
-  **live-streaming app** the agency currently promotes as its main platform (`/idol-plus/`) — full name
-  *IDOL+ Global & Celeb Live* (by YOME Technology). Official IG `@idolplus.th`. App icon at
-  `assets/img/idol-plus-logo.webp` (official current logo from idolplus.tv); App Store id `6673904841`,
-  Google Play `com.xhxy.tala`. Promote it with the
-  logo + download buttons. It is an **app**, NOT a "growth program" (older copy wrongly called it that).
+- **Live VJ is the core service.** Don't reposition the agency as anything else.
+- **No IDOL+ anywhere.** The owner had every IDOL+ page, post, image, link and mention removed on
+  2026-10-21 (old URLs 301 in `_redirects`). Don't bring it back in pages or blog posts.
 - **No money in the pitch.** No income numbers, no follower counts, no "1,000 บาท/post", no guarantees. Don't
   invent stats. State platform-income honestly ("ไม่การันตีตัวเลข ขึ้นกับความสม่ำเสมอและนโยบายแพลตฟอร์ม").
 - **"พี่ ๆ ทีมงาน"** for the team (never "ทีมโค้ช"); **"น้อง ๆ"** for applicants. Friendly, a bit cute —
@@ -77,17 +78,15 @@ The user pushed back on every one of these. Don't undo them:
 
 ## Platform rule
 
-**IDOL+ is the live app we feature on brand/main pages** (logo + download buttons). Do NOT over-emphasize
-Bigo or any other specific live app on the homepage/brand — keep `/live-bigo/` and the other keyword pages
-purely for **Google SEO indexing** (they still rank, just not headlined). **Blog articles MAY mention any app
-including TikTok, Bigo, etc.** when it genuinely helps SEO (comparisons, catching search terms).
+**No live app is featured on brand/main pages.** Keep `/live-bigo/` and the other keyword pages purely for
+**Google SEO indexing** (they still rank, just not headlined). **Blog articles MAY mention TikTok, Bigo, etc.**
+when it genuinely helps SEO (comparisons, catching search terms) — never IDOL+.
 
 ## Outbound links — always via shortlink
 
 **Every link that leaves the site must go through a `go.tomato.in.th` shortlink first** (click tracking).
 Don't hardcode raw external URLs in clickable `href`s. Current shortlinks:
-`/tomato-line` (LINE), `/tomato-ig` (IG), `/idolplus` (App Store iOS), `/idolplus-android` (Google Play),
-`/idolplus-ig` (IDOL+ IG), `/idolplus-web` (idolplus.tv). In `src/_data/site.js`, `line.short`/`ig.short`
+`/tomato-line` (LINE), `/tomato-ig` (IG). In `src/_data/site.js`, `line.short`/`ig.short`
 hold the shortlinks (use these in links); `line.url`/`ig.url` keep the REAL profile URLs and are used ONLY
 for JSON-LD `sameAs`/`contactPoint` (do NOT shorten structured-data URLs). `_redirects` social shortcuts
 also route through the shortlinks. New external link → create a shortlink first via the shortlink service
@@ -125,5 +124,5 @@ After deploying, social platforms cache old previews — re-scrape via Facebook 
 ## Logo files — don't mix these up
 
 - **`assets/img/wordmark.png`** — wide italic `tomato agency` text. Header + footer (`.brand__logo`).
-- **`assets/img/logo.png`** — round red tomato with `to/ma/to`. Splash, hero orbit, OG cover badge, all `assets/icons/`.
+- **`assets/img/logo.png`** — round red tomato with `to/ma/to`. Hero channel bug, footer, author box, OG cover badge, all `assets/icons/`.
 - **`assets/img/og-image.png`** — 1200×630 default social card (used when a page has no specific cover).

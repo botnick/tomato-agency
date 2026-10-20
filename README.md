@@ -32,7 +32,7 @@
 │   │   └── partials/           topbar, header, footer, fab, breadcrumbs, cta-band
 │   ├── index.njk               หน้าแรก
 │   ├── pages/                  หน้า keyword: vj, sangkat, ngan-tob-chat, live-bigo,
-│   │                           ngan-online, idol-plus, faq, contact, privacy
+│   │                           ngan-online, faq, contact, privacy
 │   ├── blog.njk                หน้า list บทความ  (/blog/)
 │   ├── blog-category.njk       หน้า category (/blog/category/<slug>/)
 │   ├── blog/*.md               บทความ (+ blog.11tydata.js = layout/tags/computed)

@@ -11,6 +11,15 @@
 /about             /#about     301
 /talent            /vj/        301
 
+# Removed pages (IDOL+ content deleted 2026-10-21) → closest live page
+/idol-plus                            /vj/                 301
+/idol-plus/                           /vj/                 301
+/blog/what-is-idol-plus/              /blog/               301
+/blog/idol-plus-candy-star-ruby/      /blog/               301
+/blog/idol-plus-topup-guide/          /blog/               301
+/blog/idol-plus-game-hub/             /blog/               301
+/blog/vj-character-idol-plus/         /blog/vj-character/  301
+
 # Social shortcuts → routed through go.tomato.in.th shortlinks (tracking; all outbound links go via shortlink)
 /ig                https://go.tomato.in.th/tomato-ig    302
 /instagram         https://go.tomato.in.th/tomato-ig    302

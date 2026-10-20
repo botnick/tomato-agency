@@ -2,7 +2,7 @@
   "name": "tomato-agency",
   "version": "1.0.0",
   "private": true,
-  "description": "Tomato Agency · IDOL+ — รับสมัครวีเจ Live VJ ของไทย (multi-page, blog, PWA, full SEO).",
+  "description": "Tomato Agency — รับสมัครวีเจ Live VJ ของไทย (multi-page, blog, PWA, full SEO).",
   "homepage": "https://tomato.in.th",
   "license": "UNLICENSED",
   "type": "module",

@@ -8,32 +8,6 @@
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------- Splash ---------------- */
-  const splash = $('#splash');
-  let splashHidden = false;
-  const hideSplash = () => {
-    if (!splash || splashHidden) return;
-    splashHidden = true;
-    splash.classList.add('is-hidden');
-    setTimeout(() => { try { splash.remove(); } catch {} }, 1100);
-  };
-  // Min display so entry animations (corePop 1.15s, progress 1.3s) can finish
-  const minSplash = 1500;
-  const startedAt = performance.now();
-  const scheduleHide = () => {
-    const elapsed = performance.now() - startedAt;
-    setTimeout(hideSplash, Math.max(minSplash - elapsed, 200));
-  };
-  if (document.readyState === 'complete') {
-    scheduleHide();
-  } else {
-    window.addEventListener('load', scheduleHide, { once: true });
-  }
-  setTimeout(hideSplash, 3500);
-  if (splash) {
-    splash.addEventListener('pointerdown', hideSplash, { once: true, passive: true });
-  }
-
   /* ---------------- Year ---------------- */
   const y = $('#year');
   if (y) y.textContent = new Date().getFullYear();
